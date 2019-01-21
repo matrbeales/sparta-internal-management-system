@@ -1,4 +1,4 @@
-class UsersController < Sinatra::Base
+class LoginController < Sinatra::Base
 
   # Fixes reloader
   configure :development do
@@ -12,7 +12,6 @@ class UsersController < Sinatra::Base
   set :views, Proc.new { File.join(root, "views") }
 
   get "/" do
-    "Users Found"
+    "Login Found"
   end
-
 end
