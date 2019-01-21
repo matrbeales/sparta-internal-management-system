@@ -1,0 +1,13 @@
+<form action="/<%= @user.id%>" method="POST">
+
+
+
+
+
+
+  <!-- Changes verb to PUT instead of POST if user already exists -->
+  <% if @user.id != nil%>
+    <input type="hidden" name="_method" value="PUT">
+  <% end %>
+
+</form>

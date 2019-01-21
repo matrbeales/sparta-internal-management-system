@@ -1,0 +1,13 @@
+<form action="/<%= @cohort.id%>" method="POST">
+
+
+
+
+
+
+  <!-- Changes verb to PUT instead of POST if cohort already exists -->
+  <% if @cohort.id != nil%>
+    <input type="hidden" name="_method" value="PUT">
+  <% end %>
+
+</form>

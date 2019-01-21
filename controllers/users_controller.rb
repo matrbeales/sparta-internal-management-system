@@ -13,44 +13,56 @@ class UsersController < Sinatra::Base
 
   # INDEX
   get "/" do
-    erb :"users/index.html"
+    # @users
 
+
+    erb :"users/index.html"
   end
 
   # NEW
   get "/new" do
-    erb :"users/new.html"
+    # @user
 
+
+    erb :"users/new.html"
   end
 
   # SHOW
   get "/:id" do
-    erb :"users/show.html"
+    # @user
 
+
+    erb :"users/show.html"
   end
 
   # EDIT
   get "/:id/edit" do
-    erb :"users/edit.html"
+    # @user
 
+
+    erb :"users/edit.html"
   end
 
   # CREATE
   post "/" do
-    redirect "/"
 
+
+    redirect "/"
   end
 
   # UPDATE
   put "/:id" do
-    redirect "/#{id}"
 
+
+    redirect "/#{id}"
   end
 
   # DESTROY
   delete "/:id" do
+
+
     redirect "/"
-    
   end
+
 
 end

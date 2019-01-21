@@ -1,0 +1,13 @@
+<form action="/<%= @role.id%>" method="POST">
+
+
+
+
+
+
+  <!-- Changes verb to PUT instead of POST if role already exists -->
+  <% if @role.id != nil%>
+    <input type="hidden" name="_method" value="PUT">
+  <% end %>
+
+</form>

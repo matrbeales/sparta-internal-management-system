@@ -13,43 +13,56 @@ class CohortsController < Sinatra::Base
 
   # INDEX
   get "/" do
-    erb :"cohorts/index.html"
+    # @cohorts
 
+
+    erb :"cohorts/index.html"
   end
 
   # NEW
   get "/new" do
-    erb :"cohorts/new.html"
+    # @cohort
 
+
+    erb :"cohorts/new.html"
   end
 
   # SHOW
   get "/:id" do
-    erb :"cohorts/show.html"
+    # @cohort
 
+
+    erb :"cohorts/show.html"
   end
 
   # EDIT
   get "/:id/edit" do
-    erb :"cohorts/edit.html"
+    # @cohort
 
+
+    erb :"cohorts/edit.html"
   end
 
   # CREATE
   post "/" do
-    redirect "/"
 
+
+    redirect "/"
   end
 
   # UPDATE
   put "/:id" do
-    redirect "/#{id}"
 
+
+    redirect "/#{id}"
   end
 
   # DESTROY
   delete "/:id" do
-    redirect "/"
 
+
+    redirect "/"
   end
+
+  
 end

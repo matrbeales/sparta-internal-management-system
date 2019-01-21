@@ -1,0 +1,13 @@
+<form action="/<%= @specialisation.id%>" method="POST">
+
+
+
+
+
+
+  <!-- Changes verb to PUT instead of POST if specialisation already exists -->
+  <% if @specialisation.id != nil%>
+    <input type="hidden" name="_method" value="PUT">
+  <% end %>
+
+</form>

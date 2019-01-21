@@ -13,44 +13,56 @@ class SpecialisationsController < Sinatra::Base
 
   # INDEX
   get "/" do
-    erb :"specialisations/index.html"
+    # @specialisations
 
+
+    erb :"specialisations/index.html"
   end
 
   # NEW
   get "/new" do
-    erb :"specialisations/new.html"
+    # @specialisation
 
+
+    erb :"specialisations/new.html"
   end
 
   # SHOW
   get "/:id" do
-    erb :"specialisations/show.html"
+    # @specialisation
 
+
+    erb :"specialisations/show.html"
   end
 
   # EDIT
   get "/:id/edit" do
-    erb :"specialisations/edit.html"
+    # @specialisation
 
+
+    erb :"specialisations/edit.html"
   end
 
   # CREATE
   post "/" do
-    redirect "/"
 
+
+    redirect "/"
   end
 
   # UPDATE
   put "/:id" do
-    redirect "/#{id}"
 
+
+    redirect "/#{id}"
   end
 
   # DESTROY
   delete "/:id" do
-    redirect "/"
 
+
+    redirect "/"
   end
+
 
 end
