@@ -11,7 +11,45 @@ class CohortsController < Sinatra::Base
   # sets the view directory correctly
   set :views, Proc.new { File.join(root, "views") }
 
+  # INDEX
   get "/" do
-    "Cohorts Found"
+    erb :"cohorts/index.html"
+
+  end
+
+  # NEW
+  get "/new" do
+    erb :"cohorts/new.html"
+
+  end
+
+  # SHOW
+  get "/:id" do
+    erb :"cohorts/show.html"
+
+  end
+
+  # EDIT
+  get "/:id/edit" do
+    erb :"cohorts/edit.html"
+
+  end
+
+  # CREATE
+  post "/" do
+    redirect "/"
+
+  end
+
+  # UPDATE
+  put "/:id" do
+    redirect "/#{id}"
+
+  end
+
+  # DESTROY
+  delete "/:id" do
+    redirect "/"
+
   end
 end

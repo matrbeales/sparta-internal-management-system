@@ -11,7 +11,46 @@ class RolesController < Sinatra::Base
   # sets the view directory correctly
   set :views, Proc.new { File.join(root, "views") }
 
+  # INDEX
   get "/" do
-    "Roles Found"
+    erb :"roles/index.html"
+
   end
+
+  # NEW
+  get "/new" do
+    erb :"roles/new.html"
+
+  end
+
+  # SHOW
+  get "/:id" do
+    erb :"roles/show.html"
+
+  end
+
+  # EDIT
+  get "/:id/edit" do
+    erb :"roles/edit.html"
+
+  end
+
+  # CREATE
+  post "/" do
+    redirect "/"
+
+  end
+
+  # UPDATE
+  put "/:id" do
+    redirect "/#{id}"
+
+  end
+
+  # DESTROY
+  delete "/:id" do
+    redirect "/"
+
+  end
+  
 end

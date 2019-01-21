@@ -11,8 +11,46 @@ class UsersController < Sinatra::Base
   # sets the view directory correctly
   set :views, Proc.new { File.join(root, "views") }
 
+  # INDEX
   get "/" do
-    "Users Found"
+    erb :"users/index.html"
+
+  end
+
+  # NEW
+  get "/new" do
+    erb :"users/new.html"
+
+  end
+
+  # SHOW
+  get "/:id" do
+    erb :"users/show.html"
+
+  end
+
+  # EDIT
+  get "/:id/edit" do
+    erb :"users/edit.html"
+
+  end
+
+  # CREATE
+  post "/" do
+    redirect "/"
+
+  end
+
+  # UPDATE
+  put "/:id" do
+    redirect "/#{id}"
+
+  end
+
+  # DESTROY
+  delete "/:id" do
+    redirect "/"
+    
   end
 
 end
