@@ -1,0 +1,7 @@
+<h2>
+  Cohort: <%= @cohort.cohort_name%>
+</h2>
+
+<h2>
+  Specialisation: <%= @cohort.get_info "specialisation", "specialisation_name", @cohort.specialisation_id%>
+</h2>
