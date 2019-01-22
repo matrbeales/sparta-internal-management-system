@@ -22,8 +22,7 @@ class CohortsController < Sinatra::Base
   # NEW
   get "/new" do
     # @cohort
-
- 
+    @cohort = Cohort.new
     erb :"cohorts/new.html"
   end
 
