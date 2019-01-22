@@ -29,7 +29,7 @@ class CohortsController < Sinatra::Base
   get "/:id" do
     id = params[:id].to_i
     @cohort = Cohort.find id
-    
+
     erb :"cohorts/show.html"
   end
 
@@ -43,16 +43,26 @@ class CohortsController < Sinatra::Base
 
   # CREATE
   post "/" do
+    cohort = Cohort.new
+    cohort.cohort_id = params[:cohort_id]
+    cohort.cohort_name = params[:cohort_name]
+    cohort.specialisation_id = params[:specialisation_id]
 
-
-    redirect "/"
+    cohort.save
+    redirect "/cohorts"
   end
 
   # UPDATE
   put "/:id" do
+    id = params[:id].to_i
+    cohort = Cohort.find id
 
+    cohort.cohort_id = params[:cohort_id]
+    cohort.cohort_name = params[:cohort_name]
+    cohort.specialisation_id = params[:specialisation_id]
 
-    redirect "/#{id}"
+    cohort.save
+    redirect "/cohorts/#{id}"
   end
 
   # DESTROY

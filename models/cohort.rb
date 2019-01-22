@@ -42,6 +42,18 @@ class Cohort
     return cohort
   end
 
+  def save
+    conn = Cohort.open_connection
+
+    if !self.cohort_id
+      sql = "INSERT INTO cohort_table (cohort_name, specialisation_id) VALUES('#{self.cohort_name}', #{self.specialisation_id});"
+    else
+      sql = "UPDATE cohort_table SET cohort_name = '#{self.cohort_name}', specialisation_id = #{self.specialisation_id} WHERE cohort_id = #{self.cohort_id};"
+    end
+
+    conn.exec(sql)
+  end
+
   def get_info resource, column, id
     conn = User.open_connection
     sql = "SELECT #{column} FROM #{resource}_table WHERE #{resource}_id = #{id};"
