@@ -6,6 +6,21 @@ attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, 
     return PG.connect(dbname: "user_management", user: "postgres", password: "password")
   end
 
+  def self.all
+      conn = self.open_connection
+
+      sql = "SELECT * FROM user_table ORDER BY user_id;"
+
+      results = conn.exec(sql)
+
+      users = results.map do |tuple|
+        self.hydrate_data tuple
+      end
+
+      return users
+    end
+
+
   def self.hydrate_data user_data
     user = User.new
     user.user_id = user_data["user_id"].to_i
