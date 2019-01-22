@@ -42,17 +42,47 @@ class Cohort
     return cohort
   end
 
-  def get_info resource, column, id
+  def save
+    conn = Cohort.open_connection
+
+    if !self.cohort_id
+      sql = "INSERT INTO cohort_table (cohort_name, specialisation_id) VALUES('#{self.cohort_name}', #{self.specialisation_id});"
+    else
+      sql = "UPDATE cohort_table SET cohort_name = '#{self.cohort_name}', specialisation_id = #{self.specialisation_id} WHERE cohort_id = #{self.cohort_id};"
+    end
+
+    conn.exec(sql)
+  end
+
+  def get_info resource, column, id # e.g. cohort, cohort_name, cohort_id
     conn = User.open_connection
     sql = "SELECT #{column} FROM #{resource}_table WHERE #{resource}_id = #{id};"
-    value = conn.exec(sql)[0]["#{column}"]
+    result = conn.exec(sql)
+    conn.close
 
+    if result.ntuples != 0
+      value = result[0]["#{column}"]
+      return value
+    else
+      return nil
+    end
+
+    return value
+  end
+
+  def self.get_last_id resource
+    conn = Cohort.open_connection
+    sql = "SELECT #{resource}_id FROM #{resource}_table ORDER BY #{resource}_id DESC LIMIT 1;"
+    value = conn.exec(sql)[0]["#{resource}_id"]
     conn.close
     return value
   end
 
-
-
+  def self.destroy id
+    conn = self.open_connection
+    sql = "DELETE FROM cohort_table WHERE cohort_id = #{id};"
+    conn.exec(sql)
+  end
 
 
 

@@ -1,13 +1,29 @@
-<form action="/<%= @cohort.id%>" method="POST">
+<form action="/cohorts/<%= @cohort.cohort_id%>" method="POST">
+<!-- This will get the Cohort Name from the models and allow you to inject data via manual input -->
+    <div class="">
+      <label>Cohort Name</label>
+      <input type="text" name="cohort_name" placeholder="Please enter your cohort" value=" <%= @cohort.cohort_name %> ">
+    </div>
 
-
-
-
-
+    <div class="">
+      <label>Specialisation</label>
+      <select name="specialisation_id">
+        <% for i in 1..(Cohort.get_last_id "specialisation").to_i%>
+          <% specialisation_name = @cohort.get_info "specialisation", "specialisation_name", i%>
+          <% if specialisation_name != nil %>
+            <option value=<%= i %> <%= @cohort.specialisation_id == i ? "selected" : "" %> > <%= specialisation_name %></option>
+          <% end %>
+        <% end %>
+      </select>
+    </div>
 
   <!-- Changes verb to PUT instead of POST if cohort already exists -->
-  <% if @cohort.id != nil%>
+  <% if @cohort.cohort_id != nil%>
     <input type="hidden" name="_method" value="PUT">
   <% end %>
+
+  <div class="">
+    <input type="submit" value="Save Cohort">
+  </div>
 
 </form>
