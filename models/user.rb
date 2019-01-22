@@ -57,4 +57,29 @@ attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, 
   end
 
 
+  def save
+    conn = User.open_connection
+
+    if !self.user_id
+      sql = "INSERT INTO user_table (first_name, last_name, email, password, cohort_id, role_id) VALUES('#{self.first_name}', '#{self.last_name}', '#{self.email}', '#{self.password}', #{self.cohort_id}, #{self.role_id});"
+    else
+      sql = "UPDATE user_table SET first_name = '#{self.first_name}', last_name = '#{self.last_name}', email = '#{self.email}', password = '#{self.password}', cohort_id = #{self.cohort_id}, role_id = #{self.role_id} WHERE user_id = #{self.user_id};"
+    end
+
+    conn.exec(sql)
+  end
+
+  def self.get_last_id resource
+    conn = User.open_connection
+    sql = "SELECT #{resource}_id FROM #{resource}_table ORDER BY #{resource}_id DESC LIMIT 1;"
+    value = conn.exec(sql)[0]["#{resource}_id"]
+    conn.close
+    return value
+  end
+
+  def self.destroy id
+    conn = self.open_connection
+    sql = "DELETE FROM user_table WHERE user_id = #{id};"
+    conn.exec(sql)
+  end
 end

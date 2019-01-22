@@ -13,9 +13,7 @@ class CohortsController < Sinatra::Base
 
   # INDEX
   get "/" do
-    # @cohorts
-
-
+    @cohorts = Cohort.all
     erb :"cohorts/index.html"
   end
 
