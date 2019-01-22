@@ -13,9 +13,7 @@ class RolesController < Sinatra::Base
 
   # INDEX
   get "/" do
-    # @roles
-
-
+    @roles = Role.all
     erb :"roles/index.html"
   end
 
