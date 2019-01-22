@@ -11,6 +11,7 @@
       <td><a href="/users/<%= user.user_id %>"><%= user.first_name %> <%= user.last_name %></a></td>
       <td><%= user.email %></td>
     </tr>
+    <button type="button" name="button"><a href="users/<%= user.user_id %>/edit">Edit</a></button>
   <% end %>
 </table>
 
