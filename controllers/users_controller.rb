@@ -27,8 +27,8 @@ class UsersController < Sinatra::Base
 
   # SHOW
   get "/:id" do
-    user_id = params[:user_id].to_i
-    @user = User.find user_id
+    id = params[:id].to_i
+    @user = User.find id
 
     erb :"users/show.html"
   end
