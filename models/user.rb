@@ -35,10 +35,20 @@ attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, 
     return user
   end
 
-  def get_info table, id
+  # def get_info table, id
+  #   conn = User.open_connection
+  #   sql = "SELECT #{table}_name FROM #{table}_table WHERE #{table}_id = #{id};"
+  #   value = conn.exec(sql)[0]["#{table}_name"]
+  #
+  #   conn.close
+  #   return value
+  # end
+
+
+  def get_info resource, column, id # cohort, cohort_name, cohort_id
     conn = User.open_connection
-    sql = "SELECT #{table}_name FROM #{table}_table WHERE #{table}_id = #{id};"
-    value = conn.exec(sql)[0]["#{table}_name"]
+    sql = "SELECT #{column} FROM #{resource}_table WHERE #{resource}_id = #{id};"
+    value = conn.exec(sql)[0]["#{column}"]
 
     conn.close
     return value
