@@ -23,7 +23,7 @@ class CohortsController < Sinatra::Base
   get "/new" do
     # @cohort
 
-
+ 
     erb :"cohorts/new.html"
   end
 
@@ -64,5 +64,5 @@ class CohortsController < Sinatra::Base
     redirect "/"
   end
 
-  
+
 end
