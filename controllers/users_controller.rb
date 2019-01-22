@@ -14,7 +14,6 @@ class UsersController < Sinatra::Base
   # INDEX
   get "/" do
     @users = User.all
-    puts @users
     erb :"users/index.html"
   end
 
@@ -69,7 +68,7 @@ class UsersController < Sinatra::Base
 
 
     user.save
-    redirect "/#{id}"
+    redirect "/users/#{id}"
   end
 
   # DESTROY
