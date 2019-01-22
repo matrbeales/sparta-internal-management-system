@@ -20,7 +20,7 @@ class UsersController < Sinatra::Base
   end
 
   # NEW
-  get "users/new" do
+  get "/new" do
     # @user
     @user = User.new
     erb :"users/new.html"
