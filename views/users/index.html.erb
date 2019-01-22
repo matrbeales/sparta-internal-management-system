@@ -1,10 +1,15 @@
 <h1>Users</h1>
-<% @users.each do |user|%>
-
-    <h2><a href="/users/<%= user.id %>"><%= user.title %></a></h2>
-    <h2><%= user.first_name %></h2>
-    <h2><%= user.last_name %></h2>
-    <h2<%= user.email %></h2>
 
 
+<table>
+  <tr>
+    <th>Full Name</th>
+    <th>Email</th>
+  </tr>
+  <% @users.each do |user|%>
+    <tr>
+      <td><a href="/<%= user.user_id %>"><%= user.first_name %> <%= user.last_name %></a></td>
+      <td><%= user.email %></td>
+    </tr>
   <% end %>
+</table>

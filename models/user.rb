@@ -10,17 +10,17 @@ class User
   def self.all
       conn = self.open_connection
 
-      sql = "SELECT * FROM user ORDER BY id;"
+      sql = "SELECT * FROM user_table ORDER BY user_id;"
 
       results = conn.exec(sql)
 
       users = results.map do |tuple|
-        self.hydrate tuple
+        self.hydrate_data tuple
       end
 
-      return user
+      return users
     end
-    
+
 
   def self.hydrate_data user_data
     user = User.new

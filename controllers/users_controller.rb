@@ -13,7 +13,8 @@ class UsersController < Sinatra::Base
 
   # INDEX
   get "/" do
-    @Users = User.all
+    @users = User.all
+    puts @users
     erb :"users/index.html"
   end
 
