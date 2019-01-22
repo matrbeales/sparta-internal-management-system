@@ -1,3 +1,5 @@
+
+
 <h1>
   <%= "#{@user.first_name} #{@user.last_name}"%>
 </h1>
@@ -21,5 +23,9 @@
 <h2>
   Role: <%= @user.get_info "role", "role_name", @user.role_id%>
 </h2>
+<button type="button" name="button"><a href="<%= @user.user_id %>/edit">Edit User</a></button>
 
-<button type="button" name="button"><a href="<%= @user.user_id %>/edit">Edit</a></button>
+<form class="" action="/users/<%= @user.user_id %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" name="" value="Delete User">
+</form>
