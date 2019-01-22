@@ -1,12 +1,17 @@
 <h1>Cohorts</h1>
-<table>
-  <tr>
-    <th>Cohort Name</th>
-  </tr>
-  <% @cohorts.each do |cohort|%>
+
+<table class="table">
+  <thead class="thead-dark">
     <tr>
-      <td><a href="/cohorts/<%= cohort.cohort_id %>"><%= cohort.cohort_name %></a></td>
+      <th>Cohort Name</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @cohorts.each do |cohort|%>
+      <tr>
+        <td><a href="/cohorts/<%= cohort.cohort_id %>"><%= cohort.cohort_name %></a></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 <button type="button" name="button"><a href="cohorts/new">New entry</a></button>
