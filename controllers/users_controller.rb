@@ -35,9 +35,9 @@ class UsersController < Sinatra::Base
 
   # EDIT
   get "/:id/edit" do
+    id = params[:id].to_i
+    @user = User.find id
     # @user
-
-
     erb :"users/edit.html"
   end
 
