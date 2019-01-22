@@ -1,6 +1,7 @@
 require "sinatra"
 require "sinatra/contrib"
 require "sinatra/reloader" if development?
+require_relative "controllers/app_controller.rb"
 require_relative "controllers/cohorts_controller.rb"
 require_relative "controllers/roles_controller.rb"
 require_relative "controllers/specialisations_controller.rb"
