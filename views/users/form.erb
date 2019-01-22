@@ -22,7 +22,11 @@
 
   <div class="">
     <label>Cohort</label>
-    <input type="text" name="cohort_id" placeholder="Please enter user's Cohort" value=" <%= @user.cohort_id %> ">
+    <select name="cohort_id">
+      <% for i in 1..2%>
+        <option value=<%= i %> <%= @user.cohort_id == i ? "selected" : "" %> > <%= @user.get_info "cohort", "cohort_name", i %></option>
+        <% end %>
+    </select>
   </div>
 
   <div class="">
