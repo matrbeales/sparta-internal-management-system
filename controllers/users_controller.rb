@@ -23,14 +23,13 @@ class UsersController < Sinatra::Base
   get "users/new" do
     # @user
     @user = User.new
-    put "hello world"
     erb :"users/new.html"
   end
 
   # SHOW
   get "/:id" do
-    # @user
-
+    user_id = params[:user_id].to_i
+    @user = User.find user_id
 
     erb :"users/show.html"
   end
