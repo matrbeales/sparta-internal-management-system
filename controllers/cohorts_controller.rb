@@ -20,12 +20,7 @@ class CohortsController < Sinatra::Base
   # NEW
   get "/new" do
     # @cohort
-<<<<<<< HEAD
     @cohort = Cohort.new
-=======
-
-
->>>>>>> dev
     erb :"cohorts/new.html"
   end
 

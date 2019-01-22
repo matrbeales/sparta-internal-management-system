@@ -1,4 +1,4 @@
-<form action="/<%= @cohort.id%>" method="POST">
+<form action="/<%= @cohort.cohort_id%>" method="POST">
 <!-- This will get the Cohort Name from the models and allow you to inject data via manual input -->
     <div class="">
       <label>Cohort Name</label>
@@ -8,8 +8,12 @@
 
 
   <!-- Changes verb to PUT instead of POST if cohort already exists -->
-  <% if @cohort.id != nil%>
+  <% if @cohort.cohort_id != nil%>
     <input type="hidden" name="_method" value="PUT">
   <% end %>
+
+  <div class="">
+    <input type="submit" value="Save Cohort">
+  </div>
 
 </form>
