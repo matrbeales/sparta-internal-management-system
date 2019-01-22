@@ -1,5 +1,5 @@
 require "pg"
 
-class Specialisation
+class Specialisation < App
 
 end

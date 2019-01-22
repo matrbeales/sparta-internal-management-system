@@ -8,8 +8,8 @@
     <div class="">
       <label>Specialisation</label>
       <select name="specialisation_id">
-        <% for i in 1..(Cohort.get_last_id "specialisation").to_i%>
-          <% specialisation_name = @cohort.get_info "specialisation", "specialisation_name", i%>
+        <% for i in 1..(App.get_last_id "specialisation").to_i%>
+          <% specialisation_name = App.get_info "specialisation", "specialisation_name", i%>
           <% if specialisation_name != nil %>
             <option value=<%= i %> <%= @cohort.specialisation_id == i ? "selected" : "" %> > <%= specialisation_name %></option>
           <% end %>
