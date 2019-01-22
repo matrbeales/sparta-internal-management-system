@@ -56,4 +56,16 @@ attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, 
     return value
   end
 
+  def save
+  conn = User.open_connection
+
+  if !self.user_id
+    sql = "INSERT INTO user_table(first_name, last_name, email, password, cohort_id, role_id) VALUES('#{self.first_name}', '#{self.last_name}', '#{self.email}', '#{self.password}', #{self.cohort_id}, #{self.role_id});"
+  else
+    sql = "UPDATE users_table SET first_name = '#{self.first_name}', last_name = '#{self.last_name}, email = '#{self.email}, password = '#{self.password}, cohort_id = #{self.cohort_id}, role_id = #{self.role_id}, WHERE id = #{self.user_id};"
+  end
+
+  conn.exec(sql)
+end
+
 end

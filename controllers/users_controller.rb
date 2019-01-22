@@ -52,13 +52,23 @@ class UsersController < Sinatra::Base
     user.role_id = params[:role_id]
 
     user.save
-    redirect "/"
+    redirect "/users"
   end
 
   # UPDATE
   put "/:id" do
+    id = params[:id].to_i
+    user = User.find id
+
+    user.first_name = params[:first_name]
+    user.last_name = params[:last_name]
+    user.email = params[:email]
+    user.password = params[:password]
+    user.cohort_id = params[:cohort_id]
+    user.role_id = params[:role_id]
 
 
+    user.save
     redirect "/#{id}"
   end
 
