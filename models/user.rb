@@ -56,6 +56,7 @@ attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, 
     return value
   end
 
+
   def save
   conn = User.open_connection
 
@@ -67,5 +68,14 @@ attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, 
 
   conn.exec(sql)
 end
+
+  def self.get_last_id resource
+    conn = User.open_connection
+    sql = "SELECT #{resource}_id FROM #{resource}_table ORDER BY #{resource}_id DESC LIMIT 1;"
+    value = conn.exec(sql)[0]["#{resource}_id"]
+    conn.close
+    return value
+  end
+
 
 end
