@@ -66,9 +66,9 @@ class CohortsController < Sinatra::Base
 
   # DESTROY
   delete "/:id" do
-
-
-    redirect "/"
+    id = params[:id].to_i
+    Cohort.destroy id
+    redirect "/cohorts"
   end
 
 

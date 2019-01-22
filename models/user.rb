@@ -47,13 +47,19 @@ attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, 
   end
 
 
-  def get_info resource, column, id # cohort, cohort_name, cohort_id
+  def get_info resource, column, id # e.g. cohort, cohort_name, cohort_id
     conn = User.open_connection
     sql = "SELECT #{column} FROM #{resource}_table WHERE #{resource}_id = #{id};"
-    value = conn.exec(sql)[0]["#{column}"]
-
+    result = conn.exec(sql)
     conn.close
-    return value
+
+    if result.ntuples != 0
+      value = result[0]["#{column}"]
+      return value
+    else
+      return nil
+    end
+
   end
 
 

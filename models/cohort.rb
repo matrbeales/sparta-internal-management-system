@@ -54,12 +54,19 @@ class Cohort
     conn.exec(sql)
   end
 
-  def get_info resource, column, id
+  def get_info resource, column, id # e.g. cohort, cohort_name, cohort_id
     conn = User.open_connection
     sql = "SELECT #{column} FROM #{resource}_table WHERE #{resource}_id = #{id};"
-    value = conn.exec(sql)[0]["#{column}"]
-
+    result = conn.exec(sql)
     conn.close
+
+    if result.ntuples != 0
+      value = result[0]["#{column}"]
+      return value
+    else
+      return nil
+    end
+
     return value
   end
 
@@ -71,7 +78,11 @@ class Cohort
     return value
   end
 
-
+  def self.destroy id
+    conn = self.open_connection
+    sql = "DELETE FROM cohort_table WHERE cohort_id = #{id};"
+    conn.exec(sql)
+  end
 
 
 
