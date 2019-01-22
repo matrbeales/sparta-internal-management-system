@@ -27,9 +27,9 @@ class CohortsController < Sinatra::Base
 
   # SHOW
   get "/:id" do
-    # @cohort
-
-
+    id = params[:id].to_i
+    @cohort = Cohort.find id
+    
     erb :"cohorts/show.html"
   end
 
