@@ -1,13 +1,27 @@
-<form action="/<%= @user.id%>" method="POST">
+<form action="/<%= @user.user_id%>" method="POST">
 
+  <div class="">
+    <label>First Name</label>
+    <input type="text" name="first_name" placeholder="Please enter user's first name" value=" <%= @user.first_name %> ">
+  </div>
 
+  <div class="">
+    <label>Last Name</label>
+    <input type="text" name="last_name" placeholder="Please enter user's last name"  value=" <%= @user.last_name %> ">
+  </div>
 
-
-
+  <div class="">
+    <label>Email</label>
+    <input type="text" name="email" placeholder="Please enter user's email" value=" <%= @user.email %> ">
+  </div>
 
   <!-- Changes verb to PUT instead of POST if user already exists -->
-  <% if @user.id != nil%>
+  <% if @user.user_id != nil%>
     <input type="hidden" name="_method" value="PUT">
   <% end %>
+
+<div class="">
+  <input type="submit" value="Save User">
+</div>
 
 </form>
