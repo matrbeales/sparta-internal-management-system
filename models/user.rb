@@ -7,6 +7,21 @@ class User
     return PG.connect(dbname: "user_management")
   end
 
+  def self.all
+      conn = self.open_connection
+
+      sql = "SELECT * FROM user ORDER BY id;"
+
+      results = conn.exec(sql)
+
+      users = results.map do |tuple|
+        self.hydrate tuple
+      end
+
+      return user
+    end
+    
+
   def self.hydrate_data user_data
     user = User.new
     user.user_id = user_data["id"].to_i

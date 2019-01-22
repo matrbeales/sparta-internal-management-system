@@ -1,1 +1,10 @@
 <h1>Users</h1>
+<% @users.each do |user|%>
+
+    <h2><a href="/users/<%= user.id %>"><%= user.title %></a></h2>
+    <h2><%= user.first_name %></h2>
+    <h2><%= user.last_name %></h2>
+    <h2<%= user.email %></h2>
+
+
+  <% end %>
