@@ -56,5 +56,4 @@ attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, 
     return value
   end
 
-
 end

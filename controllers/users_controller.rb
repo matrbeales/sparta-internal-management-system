@@ -43,8 +43,15 @@ class UsersController < Sinatra::Base
 
   # CREATE
   post "/" do
+    user = User.new
+    user.first_name = params[:first_name]
+    user.last_name = params[:last_name]
+    user.email = params[:email]
+    user.password = params[:password]
+    user.cohort_id = params[:cohort_id]
+    user.role_id = params[:role_id]
 
-
+    user.save
     redirect "/"
   end
 
