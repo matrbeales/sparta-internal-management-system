@@ -57,10 +57,8 @@ class UsersController < Sinatra::Base
 
   # DESTROY
   delete "/:id" do
-
-
+    id = params[:id].to_i
+    User.destroy id
     redirect "/"
   end
-
-
 end

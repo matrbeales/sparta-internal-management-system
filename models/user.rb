@@ -64,4 +64,9 @@ attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, 
     return value
   end
 
+  def self.destroy id
+    conn = self.open_connection
+    sql = "DELETE FROM user_table WHERE id = #{id};
+    conn.exec(sql)
+  end
 end
