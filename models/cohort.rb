@@ -51,6 +51,13 @@ class Cohort
     return value
   end
 
+  def self.get_last_id resource
+    conn = Cohort.open_connection
+    sql = "SELECT #{resource}_id FROM #{resource}_table ORDER BY #{resource}_id DESC LIMIT 1;"
+    value = conn.exec(sql)[0]["#{resource}_id"]
+    conn.close
+    return value
+  end
 
 
 
