@@ -39,14 +39,22 @@ attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, 
     sql = "SELECT user_id, first_name, last_name, email, password, cohort_id, role_id FROM user_table WHERE user_id=#{user_id};"
     result = conn.exec(sql).first
 
-    puts "Result: #{result}"
-
     user = self.hydrate_data result
-
-
 
     conn.close
 
     return user
   end
+
+
+  def get_info resource, column, id # cohort, cohort_name, cohort_id
+    conn = User.open_connection
+    sql = "SELECT #{column} FROM #{resource}_table WHERE #{resource}_id = #{id};"
+    value = conn.exec(sql)[0]["#{column}"]
+
+    conn.close
+    return value
+  end
+
+
 end
