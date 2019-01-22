@@ -30,7 +30,8 @@ class RolesController < Sinatra::Base
   # SHOW
   get "/:id" do
     # @role
-
+    id = params[:id].to_i
+    @role = Role.find id
 
     erb :"roles/show.html"
   end
