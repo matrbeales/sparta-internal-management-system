@@ -11,9 +11,9 @@
 </h2>
 
 <h2>
-  Cohort_id: <%= @user.cohort_id%>
+  Cohort: <%= @user.get_info "cohort", @user.cohort_id%>
 </h2>
 
 <h2>
-  Role_id: <%= @user.role_id%>
+  Role: <%= @user.get_info "role", @user.role_id%>
 </h2>

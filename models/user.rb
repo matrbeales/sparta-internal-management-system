@@ -30,4 +30,15 @@ class User
 
     return user
   end
+
+  def get_info table, id
+    conn = User.open_connection
+    sql = "SELECT #{table}_name FROM #{table}_table WHERE #{table}_id = #{id};"
+    value = conn.exec(sql)[0]["#{table}_name"]
+
+    conn.close
+    return value
+  end
+
+
 end
