@@ -24,9 +24,6 @@ class User
     conn = self.open_connection
     sql = "SELECT user_id, first_name, last_name, email, password, cohort_id, role_id FROM user_table WHERE user_id=#{user_id};"
     result = conn.exec(sql).first
-    puts "1"
-    puts "Result: #{result}"
-    puts "2"
     user = self.hydrate_data result
 
     conn.close
