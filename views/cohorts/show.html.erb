@@ -5,3 +5,8 @@
 <h2>
   Specialisation: <%= @cohort.get_info "specialisation", "specialisation_name", @cohort.specialisation_id%>
 </h2>
+
+<form class="" action="/cohorts/<%= @cohort.cohort_id %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" name="" value="Delete Cohort">
+</form>

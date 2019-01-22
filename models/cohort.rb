@@ -71,7 +71,11 @@ class Cohort
     return value
   end
 
-
+  def self.destroy id
+    conn = self.open_connection
+    sql = "DELETE FROM cohort_table WHERE cohort_id = #{id};"
+    conn.exec(sql)
+  end
 
 
 
