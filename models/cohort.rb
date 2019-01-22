@@ -6,7 +6,7 @@ class Cohort
       return PG.connect(dbname: "user_management", user: "postgres", password: "password")
     end
 
-<<<<<<< HEAD
+
   def self.hydrate_data cohort_data
     cohort = Cohort.new
     cohort.cohort_id = cohort_data["cohort_id"].to_i
@@ -32,7 +32,7 @@ class Cohort
 
   def self.find cohort_id
     conn = self.open_connection
-    sql = "SELECT cohort_name, cohort_id FROM cohort_table WHERE cohort_id = #{specialisation_id};"
+    sql = "SELECT cohort_id, cohort_name, specialisation_id FROM cohort_table WHERE cohort_id = #{cohort_id};"
     result = conn.exec(sql).first
 
     cohort = self.hydrate_data result
@@ -58,6 +58,4 @@ class Cohort
 
 
 
-=======
->>>>>>> dev
 end
