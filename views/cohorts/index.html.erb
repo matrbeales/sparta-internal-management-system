@@ -1,1 +1,12 @@
 <h1>Cohorts</h1>
+<table>
+  <tr>
+    <th>Cohort Name</th>
+  </tr>
+  <% @cohorts.each do |cohort|%>
+    <tr>
+      <td><a href="/cohorts/<%= cohort.cohort_id %>"><%= cohort.cohort_name %></a></td>
+    </tr>
+  <% end %>
+</table>
+<button type="button" name="button"><a href="cohorts/new">New entry</a></button>
