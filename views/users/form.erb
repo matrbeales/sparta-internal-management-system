@@ -1,4 +1,4 @@
-<form action="/<%= @user.id%>" method="POST">
+<form action="/<%= @user.user_id%>" method="POST">
 
   <div class="">
     <label>First Name</label>
@@ -15,23 +15,8 @@
     <input type="text" name="email" placeholder="Please enter user's email" value=" <%= @user.email %> ">
   </div>
 
-  <div class="">
-    <label>Password</label>
-    <input type="text" name="password" placeholder="Please enter user's password" value=" <%= @user.password %>">
-  </div>
-
-  <div class="">
-    <label>Cohort</label>
-    <input type="text" name="cohort_id" placeholder="Please enter user's Cohort" value=" <%= @user.cohort_id %> ">
-  </div>
-
-  <div class="">
-    <label>Role</label>
-    <input type="text" name="role_id" placeholder="Please enter user's Role" value=" <%= @user.role_id %> ">
-  </div>
-
   <!-- Changes verb to PUT instead of POST if user already exists -->
-  <% if @user.id != nil%>
+  <% if @user.user_id != nil%>
     <input type="hidden" name="_method" value="PUT">
   <% end %>
 
