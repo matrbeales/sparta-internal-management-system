@@ -26,11 +26,22 @@ end
 
   def self.find role_id
     conn = self.open_connection
-    sql = "SELECT role_id, role_name FROM role_table WHERE role_id =#{role_id};"
+    sql = "SELECT role_id, role_name FROM role_table WHERE role_id = #{role_id};"
     result = conn.exec(sql).first
     role = self.hydrate_data result
     conn.close
     return role
+  end
+
+  def save
+    conn = Role.open_connection
+
+    if !self.role_id
+      sql = "INSERT INTO role_table (role_id, role_name) VALUES('#{self.role_id}', #{self.role_name});"
+    else
+      sql = "UPDATE cohort_table SET role_id = '#{self.role_id}', role_name = #{self.role_name} WHERE role_id = #{self.role_id};"
+    end
+    conn.exec(sql)
   end
 
   def get_info resource, column, id # cohort, cohort_name, cohort_id
@@ -42,4 +53,11 @@ end
     return value
   end
 
+  def self.get_last_id resource
+    conn = Role .open_connection
+    sql = "SELECT #{resource}_id FROM #{resource}_table ORDER BY #{resource}_id DESC LIMIT 1;"
+    value = conn.exec(sql)[0]["#{resource}_id"]
+    conn.close
+    return value
+  end
 end
