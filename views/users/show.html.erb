@@ -15,7 +15,7 @@
 </h2>
 
 <h2>
-  Specialisation: <%= %>
+  Specialisation: <%= @user.get_info "specialisation", "specialisation_name", (@user.get_info "specialisation", "specialisation_id", @user.cohort_id) %>
 </h2>
 
 <h2>
