@@ -44,5 +44,13 @@ class App
     return correct
   end
 
+  def self.correct_password? password
+    if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/ =~ "#{password}") == 0
+      return true
+    else
+      return false
+    end
+  end
+
 
 end

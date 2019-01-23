@@ -35,7 +35,7 @@ class UsersController < AppController
     two = one.strip
     three = two.end_with?("@spartaglobal.com")
 
-    if App.correct_form_entry?(params[:first_name], params[:last_name]) == true && params[:email].strip.downcase.end_with?("@spartaglobal.com")
+    if App.correct_form_entry?(params[:first_name], params[:last_name]) == true && params[:email].strip.downcase.end_with?("@spartaglobal.com") && App.correct_password?(params[:password]) == true
       user = User.new
       user.first_name = params[:first_name].strip
       user.last_name = params[:last_name].strip
@@ -58,7 +58,7 @@ class UsersController < AppController
   put "/:id" do
     id = params[:id].to_i
 
-    if App.correct_form_entry?(params[:first_name], params[:last_name]) == true && params[:email].strip.downcase.end_with?("@spartaglobal.com")
+    if App.correct_form_entry?(params[:first_name], params[:last_name]) == true && params[:email].strip.downcase.end_with?("@spartaglobal.com") && App.correct_password?(params[:password]) == true
       user = User.find id
 
       user.first_name = params[:first_name].strip
