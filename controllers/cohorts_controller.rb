@@ -30,25 +30,39 @@ class CohortsController < AppController
 
   # CREATE
   post "/" do
-    cohort = Cohort.new
-    cohort.cohort_id = params[:cohort_id]
-    cohort.cohort_name = params[:cohort_name]
-    cohort.specialisation_id = params[:specialisation_id]
+    if App.correct_form_entry?(params[:cohort_name]) == true
+      cohort = Cohort.new
+      cohort.cohort_id = params[:cohort_id]
+      cohort.cohort_name = params[:cohort_name].strip
+      cohort.specialisation_id = params[:specialisation_id]
 
-    cohort.save
-    redirect "/cohorts"
+      cohort.save
+      redirect "/cohorts"
+    else
+      @redirect = true
+      @cohort = Cohort.new
+      erb :"cohorts/new.html"
+    end
   end
 
   # UPDATE
   put "/:id" do
     id = params[:id].to_i
-    cohort = Cohort.find id
 
-    cohort.cohort_name = params[:cohort_name]
-    cohort.specialisation_id = params[:specialisation_id]
+    if App.correct_form_entry?(params[:cohort_name]) == true
+      cohort = Cohort.find id
 
-    cohort.save
-    redirect "/cohorts/#{id}"
+      cohort.cohort_name = params[:cohort_name].strip
+      cohort.specialisation_id = params[:specialisation_id]
+
+      cohort.save
+      redirect "/cohorts/#{id}"
+    else
+      @redirect = true
+      @cohort = Cohort.find id
+      erb :"cohorts/edit.html"
+    end
+
   end
 
   # DESTROY

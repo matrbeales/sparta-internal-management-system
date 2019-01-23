@@ -29,5 +29,28 @@ class App
     return value
   end
 
+  def self.correct_form_entry? *values
+    correct = true
+    # puts "Values: #{values}"
+
+    for value in values
+      # puts "Value: #{value}"
+      if value.strip == ""
+        correct = false
+      end
+
+    end
+
+    return correct
+  end
+
+  def self.correct_password? password
+    if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/ =~ "#{password}") == 0
+      return true
+    else
+      return false
+    end
+  end
+
 
 end
