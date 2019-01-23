@@ -17,4 +17,7 @@
 
 .test {
   background-color: purple;
+
+.incorrect-input {
+  color: red;
 }

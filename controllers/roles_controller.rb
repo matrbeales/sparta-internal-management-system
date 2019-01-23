@@ -27,21 +27,37 @@ class RolesController < AppController
   end
 
   # CREATE
-    post "/" do
+  post "/" do
+    if App.correct_form_entry?(params[:role_name]) == true
       role = Role.new
       role.role_id = params[:role_id]
-      role.role_name = params[:role_name]
+      role.role_name = params[:role_name].strip
       role.save
-    redirect "/roles"
+      redirect "/roles"
+
+    else
+      @redirect = true
+      @role = Role.new
+      erb :"roles/new.html"
+    end
+
   end
 
   # UPDATE
   put "/:id" do
     id = params[:id].to_i
-    role = Role.find id
-    role.role_name = params[:role_name]
-    role.save
-    redirect "/roles/#{id}"
+
+    if App.correct_form_entry?(params[:role_name]) == true
+      role = Role.find id
+      role.role_name = params[:role_name].strip
+      role.save
+      redirect "/roles/#{id}"
+    else
+      @redirect = true
+      @role = Role.find id
+      erb :"roles/edit.html"
+    end
+
   end
 
   # DESTROY
