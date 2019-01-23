@@ -41,4 +41,22 @@ class Specialisation < App
     return specialisation
   end
 
+  def save
+    conn = App.open_connection
+
+    if !self.specialisation_id
+      sql = "INSERT INTO specialisation_table (specialisation_name) VALUES('#{self.specialisation_name}');"
+    else
+      sql = "UPDATE specialisation_table SET specialisation_name = '#{self.specialisation_name}' WHERE specialisation_id = #{self.specialisation_id};"
+    end
+
+    conn.exec(sql)
+  end
+
+  def self.destroy id
+    conn = self.open_connection
+    sql = "DELETE FROM specialisation_table WHERE specialisation_id = #{id};"
+    conn.exec(sql)
+  end
+
 end
