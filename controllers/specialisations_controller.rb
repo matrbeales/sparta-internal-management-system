@@ -2,25 +2,20 @@ class SpecialisationsController < AppController
 
   # INDEX
   get "/" do
-    # @specialisations
-
-
+    @specialisations = Specialisation.all
     erb :"specialisations/index.html"
   end
 
   # NEW
   get "/new" do
-    # @specialisation
-
-
+    @specialisation = Specialisation.new 
     erb :"specialisations/new.html"
   end
 
   # SHOW
   get "/:id" do
-    # @specialisation
-
-
+    id = params[:id].to_i
+    @specialisation = Specialisation.find id
     erb :"specialisations/show.html"
   end
 

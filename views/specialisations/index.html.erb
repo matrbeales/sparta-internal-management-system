@@ -1,1 +1,17 @@
 <h1>Specialisations</h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Specialisation Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @specialisations.each do |specialisation|%>
+      <tr>
+        <td><a href="/specialisations/<%= specialisation.specialisation_id %>"><%= specialisation.specialisation_name %></a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<button type="button" name="button"><a href="specialisations/new">New Entry</a></button>
