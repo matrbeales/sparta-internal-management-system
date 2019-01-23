@@ -1,75 +1,78 @@
 
 <div class="container">
-<table>
 
-<thead>
-  <th scope="col-12">
+<div class="row">
+  <div class="col-12">
+    <h1>
       <%= "#{@user.first_name} #{@user.last_name}"%>
-  </th>
-</thead>
+    </h1>
+  </div>
+</div>
+<br>
 
-
-
-<tbody>
-
-
-
-<tr>
-<th scope="col-6">
+<div class="row">
+  <div class="col-2">
     Email:
-</th>
-<th></th>
-  <td scope="col-6">
-  <%= @user.email%>
-  </td>
-</tr>
-<tr>
-  <th scope="col-6">
+  </div>
+  <div class="col-6">
+      <%= @user.email%>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-2">
     Password:
-  </th>
-  <th></th>
-  <td scope="col-6">
- <%= @user.password%>
-  </td>
-</tr>
-  <tr>
-    <th scope="col-6">
+  </div>
+  <div class="col-6">
+    <%= @user.password%>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-2">
     Cohort:
-    </th>
-    <th></th>
-<td>
+  </div>
+  <div class="col-6">
     <%= App.get_info "cohort", "cohort_name", @user.cohort_id%>
-</td>
-</tr>
+  </div>
+</div>
 
-<tr>
-  <th>
-  Specialisation:
-  </th>
-  <th></th>
-  <td>
-   <%= App.get_info "specialisation", "specialisation_name", (App.get_info "cohort", "specialisation_id", @user.cohort_id) %>
-  </td>
-</tr>
+<br>
 
-</tbody>
+<div class="row">
+  <div class="col-2">
+      Specialisation:
+  </div>
+  <div class="col-6">
+    <%= App.get_info "specialisation", "specialisation_name", (App.get_info "cohort", "specialisation_id", @user.cohort_id) %>
+  </div>
+</div>
 
-<tr>
-  <th>
+<br>
+
+<div class="row">
+  <div class="col-2">
   Role:
-  </th>
-  <th></th>
-  <td>
+  </div>
+<div class="col-6">
   <%= App.get_info "role", "role_name", @user.role_id%>
-  </td>
-</tr>
+  </div>
+</div>
 
-<tr>
+<br>
+<div class="row">
+  <div class="col-6">
   <button type="button" name="button"><a href="<%= @user.user_id %>/edit">Edit User</a></button>
-</tr>
+</div>
+<div class="col-6">
       <form class="" action="/users/<%= @user.user_id %>" method="POST">
         <input type="hidden" name="_method" value="DELETE">
         <input type="submit" name="" value="Delete User">
       </form>
-</table>
+</div>
+</div>
 </div>
