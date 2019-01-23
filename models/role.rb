@@ -1,11 +1,7 @@
 require "pg"
 
-class Role
+class Role < App
   attr_accessor :role_id, :role_name
-
-  def self.open_connection
-    return PG.connect(dbname: "user_management", user: "postgres", password: "password")
-  end
 
   def self.hydrate_data role_data
     role = Role.new

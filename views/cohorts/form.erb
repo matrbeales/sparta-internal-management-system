@@ -8,12 +8,14 @@
     <div class="">
       <label>Specialisation</label>
       <select name="specialisation_id">
-        <% for i in 1..(Cohort.get_last_id "specialisation").to_i%>
-          <option value=<%= i %> <%= @cohort.specialisation_id == i ? "selected" : "" %> > <%= @cohort.get_info "specialisation", "specialisation_name", i %></option>
+        <% for i in 1..(App.get_last_id "specialisation").to_i%>
+          <% specialisation_name = App.get_info "specialisation", "specialisation_name", i%>
+          <% if specialisation_name != nil %>
+            <option value=<%= i %> <%= @cohort.specialisation_id == i ? "selected" : "" %> > <%= specialisation_name %></option>
+          <% end %>
         <% end %>
       </select>
     </div>
-
 
   <!-- Changes verb to PUT instead of POST if cohort already exists -->
   <% if @cohort.cohort_id != nil%>
