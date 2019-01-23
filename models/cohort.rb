@@ -1,11 +1,7 @@
 require "pg"
 
-class Cohort
+class Cohort < App
   attr_accessor :cohort_id, :cohort_name, :specialisation_id
-    def self.open_connection
-      return PG.connect(dbname: "user_management", user: "postgres", password: "password")
-    end
-
 
   def self.hydrate_data cohort_data
     cohort = Cohort.new
@@ -43,7 +39,7 @@ class Cohort
   end
 
   def save
-    conn = Cohort.open_connection
+    conn = App.open_connection
 
     if !self.cohort_id
       sql = "INSERT INTO cohort_table (cohort_name, specialisation_id) VALUES('#{self.cohort_name}', #{self.specialisation_id});"
@@ -54,38 +50,10 @@ class Cohort
     conn.exec(sql)
   end
 
-  def get_info resource, column, id # e.g. cohort, cohort_name, cohort_id
-    conn = User.open_connection
-    sql = "SELECT #{column} FROM #{resource}_table WHERE #{resource}_id = #{id};"
-    result = conn.exec(sql)
-    conn.close
-
-    if result.ntuples != 0
-      value = result[0]["#{column}"]
-      return value
-    else
-      return nil
-    end
-
-    return value
-  end
-
-  def self.get_last_id resource
-    conn = Cohort.open_connection
-    sql = "SELECT #{resource}_id FROM #{resource}_table ORDER BY #{resource}_id DESC LIMIT 1;"
-    value = conn.exec(sql)[0]["#{resource}_id"]
-    conn.close
-    return value
-  end
-
   def self.destroy id
     conn = self.open_connection
     sql = "DELETE FROM cohort_table WHERE cohort_id = #{id};"
     conn.exec(sql)
   end
-
-
-
-
 
 end

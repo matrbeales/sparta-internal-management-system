@@ -1,12 +1,9 @@
 require "pg"
 
-class Specialisation
+class Specialisation < App
   attr_accessor :specialisation_id, :specialisation_name
 
   # This class method opens the connection with the db.
-  def self.open_connection
-    return PG.connect(dbname: "user_management", user: "postgres", password: "password")
-  end
 
   # This class method converts the parsed data into to an instance object of the Specialisation class and returns it.
   def self.hydrate_data specialisation_data
