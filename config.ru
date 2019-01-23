@@ -12,6 +12,7 @@ require_relative "models/cohort.rb"
 require_relative "models/role.rb"
 require_relative "models/specialisation.rb"
 require_relative "models/user.rb"
+require_relative "models/login.rb"
 
 use Rack::MethodOverride
 map('/') {run LoginController}
