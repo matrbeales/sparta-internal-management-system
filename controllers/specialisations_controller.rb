@@ -8,7 +8,7 @@ class SpecialisationsController < AppController
 
   # NEW
   get "/new" do
-    @specialisation = Specialisation.new 
+    @specialisation = Specialisation.new
     erb :"specialisations/new.html"
   end
 
@@ -21,17 +21,18 @@ class SpecialisationsController < AppController
 
   # EDIT
   get "/:id/edit" do
-    # @specialisation
-
-
+    id = params[:id].to_i
+    @specialisation = Specialisation.find id
     erb :"specialisations/edit.html"
   end
 
   # CREATE
   post "/" do
-
-
-    redirect "/"
+    specialisation = Specialisation.new
+    specialisation.specialisation_id = params[:specialisation_id]
+    specialisation.specialisation_name = params[:specialisation_name]
+    specialisation.save
+    redirect "/specialisations"
   end
 
   # UPDATE
@@ -43,9 +44,9 @@ class SpecialisationsController < AppController
 
   # DESTROY
   delete "/:id" do
-
-
-    redirect "/"
+    id = params[:id].to_i
+    Specialisation.destroy id
+    redirect "/specialisation"
   end
 
 
