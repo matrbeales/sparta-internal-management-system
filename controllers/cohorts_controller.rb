@@ -25,7 +25,6 @@ class CohortsController < AppController
   get "/:id/edit" do
     id = params[:id].to_i
     @cohort = Cohort.find id
-    # @cohort
     erb :"cohorts/edit.html"
   end
 
