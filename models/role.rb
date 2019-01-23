@@ -40,16 +40,6 @@ end
     conn.exec(sql)
   end
 
-
-
-  def self.get_last_id resource
-    conn = Role.open_connection
-    sql = "SELECT #{resource}_id FROM #{resource}_table ORDER BY #{resource}_id DESC LIMIT 1;"
-    value = conn.exec(sql)[0]["#{resource}_id"]
-    conn.close
-    return value
-  end
-
   def self.destroy id
     conn = self.open_connection
     sql = "DELETE FROM role_table WHERE role_id = #{id};"
