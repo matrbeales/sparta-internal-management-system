@@ -37,9 +37,14 @@ class SpecialisationsController < AppController
 
   # UPDATE
   put "/:id" do
+    id = params[:id].to_i
+    specialisation = Specialisation.find id
 
+    specialisation.specialisation_name = params[:specialisation_name]
 
-    redirect "/#{id}"
+    specialisation.save
+
+    redirect "/specialisations/#{id}"
   end
 
   # DESTROY

@@ -1,12 +1,12 @@
-<form action="/specialisations/<%= @specialisation.id%>" method="POST">
+<form action="/specialisations/<%= @specialisation.specialisation_id%>" method="POST">
 
   <div>
     <label>Specialisation Name</label>
-    <input type="text" name="specialisation_name" placeholder="Please enter the specialisation name" value=" <%= @specialisation.name %> ">
+    <input type="text" name="specialisation_name" placeholder="Please enter the specialisation name" value=" <%= @specialisation.specialisation_name %> ">
   </div>
 
   <!-- Changes verb to PUT instead of POST if specialisation already exists -->
-  <% if @specialisation.id != nil%>
+  <% if @specialisation.specialisation_id != nil%>
     <input type="hidden" name="_method" value="PUT">
   <% end %>
 
