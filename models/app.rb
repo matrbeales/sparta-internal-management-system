@@ -29,5 +29,20 @@ class App
     return value
   end
 
+  def self.correct_form_entry? *values
+    correct = true
+    # puts "Values: #{values}"
+
+    for value in values
+      # puts "Value: #{value}"
+      if value.strip == ""
+        correct = false
+      end
+
+    end
+
+    return correct
+  end
+
 
 end

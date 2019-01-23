@@ -1,2 +1,7 @@
 <h1>Make A New Cohort</h1>
+
+<% if @redirect == true %>
+  <p class="incorrect-input">Please enter a value</p>
+<% end %>
+
 <%= erb :"cohorts/form", :layout => false%>
