@@ -1,13 +1,17 @@
-<form action="/roles/<%= @role.id%>" method="POST">
+<form action="/roles/<%= @role.role_id%>" method="POST">
 
-
-
-
-
+  <div class="">
+    <label>Role</label>
+    <input type="text" name="role_name" placeholder="Please enter new role" value=" <%= @role.role_name %> ">
+  </div>
 
   <!-- Changes verb to PUT instead of POST if role already exists -->
-  <% if @role.id != nil%>
+  <% if @role.role_id != nil%>
     <input type="hidden" name="_method" value="PUT">
   <% end %>
+
+  <div class="">
+    <input type="submit" value="Save Role">
+  </div>
 
 </form>

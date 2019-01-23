@@ -5,12 +5,12 @@
 </h1>
 
 <h2>
-  Cohort: <%= @role.get_info "role_id", "role_name", @role.role_id%>
+  Role: <%= App.get_info "role", "role_name", @role.role_id%>
 </h2>
 
-<button type="button" name="button"><a href="<%= @role.role_name %>/edit">Edit User</a></button>
+<button type="button" name="button"><a href="<%= @role.role_id %>/edit">Edit Role</a></button>
 
-<form class="" action="/roles/<%= @role.role_name %>" method="POST">
+<form class="" action="/roles/<%= @role.role_id %>" method="POST">
   <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" name="" value="Delete User">
+  <input type="submit" name="" value="Delete Role">
 </form>

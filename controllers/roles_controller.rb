@@ -39,7 +39,6 @@ class RolesController < AppController
   put "/:id" do
     id = params[:id].to_i
     role = Role.find id
-    role.role_id = params[:role_id]
     role.role_name = params[:role_name]
     role.save
     redirect "/roles/#{id}"
