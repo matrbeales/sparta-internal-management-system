@@ -3,8 +3,6 @@ require "pg"
 class Specialisation < App
   attr_accessor :specialisation_id, :specialisation_name
 
-  # This class method opens the connection with the db.
-
   # This class method converts the parsed data into to an instance object of the Specialisation class and returns it.
   def self.hydrate_data specialisation_data
     specialisation = Specialisation.new
