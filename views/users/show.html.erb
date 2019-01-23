@@ -13,15 +13,15 @@
 </h2>
 
 <h2>
-  Cohort: <%= @user.get_info "cohort", "cohort_name", @user.cohort_id%>
+  Cohort: <%= App.get_info "cohort", "cohort_name", @user.cohort_id%>
 </h2>
 
 <h2>
-  Specialisation: <%= @user.get_info "specialisation", "specialisation_name", (@user.get_info "specialisation", "specialisation_id", @user.cohort_id) %>
+  Specialisation: <%= App.get_info "specialisation", "specialisation_name", (App.get_info "cohort", "specialisation_id", @user.cohort_id) %>
 </h2>
 
 <h2>
-  Role: <%= @user.get_info "role", "role_name", @user.role_id%>
+  Role: <%= App.get_info "role", "role_name", @user.role_id%>
 </h2>
 <button type="button" name="button"><a href="<%= @user.user_id %>/edit">Edit User</a></button>
 
