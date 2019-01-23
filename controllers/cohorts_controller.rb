@@ -44,7 +44,11 @@ class CohortsController < AppController
   put "/:id" do
     id = params[:id].to_i
     cohort = Cohort.find id
+<<<<<<< HEAD
     cohort.cohort_id = params[:cohort_id]
+=======
+
+>>>>>>> dev
     cohort.cohort_name = params[:cohort_name]
     cohort.specialisation_id = params[:specialisation_id]
 
