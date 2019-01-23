@@ -4,13 +4,21 @@
     <meta charset="utf-8">
     <title>Sparta Internal Management System</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="css/global.css">
     <script type="css/global.js">
 
     </script>
   </head>
   <body>
     <%= erb :"partials/navigation", :layout => false %>
-    <%= yield %>
+
+    <div class="container main-div">
+      <div class="row justify-content-center">
+        <div class="col">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
