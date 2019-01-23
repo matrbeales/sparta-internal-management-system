@@ -28,9 +28,11 @@ class SpecialisationsController < AppController
 
   # CREATE
   post "/" do
-
-
-    redirect "/"
+    specialisation = Specialisation.new
+    specialisation.specialisation_id = params[:specialisation_id]
+    specialisation.specialisation_name = params[:specialisation_name]
+    specialisation.save
+    redirect "/specialisations"
   end
 
   # UPDATE
@@ -47,9 +49,9 @@ class SpecialisationsController < AppController
 
   # DESTROY
   delete "/:id" do
-
-
-    redirect "/"
+    id = params[:id].to_i
+    Specialisation.destroy id
+    redirect "/specialisations"
   end
 
 
