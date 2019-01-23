@@ -8,7 +8,8 @@ attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, 
       sql = "SELECT * FROM user_table ORDER BY user_id;"
       results = conn.exec(sql)
       users = results.map do |tuple|
-      self.hydrate_data tuple
+        self.hydrate_data tuple
+      end
   end
 
   def self.hydrate_data user_data
