@@ -5,18 +5,12 @@ attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, 
 
   def self.all
       conn = self.open_connection
-
       sql = "SELECT * FROM user_table ORDER BY user_id;"
-
       results = conn.exec(sql)
-
       users = results.map do |tuple|
         self.hydrate_data tuple
       end
-
-      return users
-    end
-
+  end
 
   def self.hydrate_data user_data
     user = User.new
@@ -35,11 +29,8 @@ attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, 
     conn = self.open_connection
     sql = "SELECT user_id, first_name, last_name, email, password, cohort_id, role_id FROM user_table WHERE user_id=#{user_id};"
     result = conn.exec(sql).first
-
     user = self.hydrate_data result
-
     conn.close
-
     return user
   end
 
