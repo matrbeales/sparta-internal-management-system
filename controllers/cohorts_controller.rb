@@ -55,7 +55,6 @@ class CohortsController < Sinatra::Base
   put "/:id" do
     id = params[:id].to_i
     cohort = Cohort.find id
-
     cohort.cohort_id = params[:cohort_id]
     cohort.cohort_name = params[:cohort_name]
     cohort.specialisation_id = params[:specialisation_id]

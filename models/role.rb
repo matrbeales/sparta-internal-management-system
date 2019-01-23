@@ -39,7 +39,7 @@ end
     if !self.role_id
       sql = "INSERT INTO role_table (role_id, role_name) VALUES('#{self.role_id}', #{self.role_name});"
     else
-      sql = "UPDATE cohort_table SET role_id = '#{self.role_id}', role_name = #{self.role_name} WHERE role_id = #{self.role_id};"
+      sql = "UPDATE role_table SET role_id = '#{self.role_id}', role_name = #{self.role_name} WHERE role_id = #{self.role_id};"
     end
     conn.exec(sql)
   end
