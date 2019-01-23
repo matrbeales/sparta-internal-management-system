@@ -51,7 +51,7 @@ class SpecialisationsController < AppController
   delete "/:id" do
     id = params[:id].to_i
     Specialisation.destroy id
-    redirect "/specialisation"
+    redirect "/specialisations"
   end
 
 
