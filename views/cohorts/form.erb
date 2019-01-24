@@ -1,34 +1,42 @@
 <div class="container">
   <div class="row justify-content-center">
 
-<form id="cohort-form" action="/cohorts/<%= @cohort.cohort_id%>" method="POST">
-<!-- This will get the Cohort Name from the models and allow you to inject data via manual input -->
-    <div class="form-group row">
-      <label>Cohort Name</label>
-      <input type="text" name="cohort_name" placeholder="Please enter your cohort" value="<%= @cohort.cohort_name %>">
-    </div>
+    <form id="cohort-form" action="/cohorts/<%= @cohort.cohort_id%>" method="POST">
+    <!-- This will get the Cohort Name from the models and allow you to inject data via manual input -->
+        <div class="form-group row">
+          <label  class="col-5 col-form-label">Cohort Name</label>
+          <div class="col-7">
+          <input class="form-control" type="text" name="cohort_name" placeholder="Enter cohort" value="<%= @cohort.cohort_name %>">
+          </div>
+        </div>
 
-    <div class="">
-      <label>Specialisation</label>
-      <select name="specialisation_id">
-        <% for i in 1..(App.get_last_id "specialisation").to_i%>
-          <% specialisation_name = App.get_info "specialisation", "specialisation_name", i%>
-          <% if specialisation_name != nil %>
-            <option value=<%= i %> <%= @cohort.specialisation_id == i ? "selected" : "" %> > <%= specialisation_name %></option>
-          <% end %>
-        <% end %>
-      </select>
-    </div>
+        <div class="form-group row">
+          <label class="col-5 col-form-label">Specialisation</label>
+            <div class="col-7">
+            <select name="specialisation_id" class="custom-select">
+              <% for i in 1..(App.get_last_id "specialisation").to_i%>
+                <% specialisation_name = App.get_info "specialisation", "specialisation_name", i%>
+                <% if specialisation_name != nil %>
+                  <option value=<%= i %> <%= @cohort.specialisation_id == i ? "selected" : "" %> > <%= specialisation_name %></option>
+                <% end %>
+              <% end %>
+            </select>
+          </div>
+        </div>
 
-  <!-- Changes verb to PUT instead of POST if cohort already exists -->
-  <% if @cohort.cohort_id != nil%>
-    <input type="hidden" name="_method" value="PUT">
-  <% end %>
+      <!-- Changes verb to PUT instead of POST if cohort already exists -->
+      <% if @cohort.cohort_id != nil%>
+        <input type="hidden" name="_method" value="PUT">
+      <% end %>
 
-  <div class="">
-    <input type="submit" value="Save Cohort">
-  </div>
+      <div class="form-group row">
+        <button class="btn btn-secondary btn-lg btn-block" type="submit" name="button" form="cohort-form">Save Cohort</button>
+      </div>
 
     </form>
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae58d92c5fc794baa89a4617e6ca9706ac886e6c
   </div>
 </div>

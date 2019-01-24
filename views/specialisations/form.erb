@@ -4,9 +4,9 @@
     <form id="specialisation-form" action="/specialisations/<%= @specialisation.specialisation_id%>" method="POST">
 
       <div class="form-group row">
-        <label for="input-ln" class="col-3 col-form-label">Specialisation Name</label>
-          <div class="col-9">
-        <input id="input-ln" type="text" name="specialisation_name" placeholder="Please enter the specialisation name" value="<%= @specialisation.specialisation_name %>">
+        <label for="input-fn" class="col-5 col-form-label">Specialisation</label>
+          <div class="col-7">
+        <input class="form-control" id="input-fn" type="text" name="specialisation_name" placeholder="Please enter the specialisation" value="<%= @specialisation.specialisation_name %>">
       </div>
     </div>
 
