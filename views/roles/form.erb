@@ -1,26 +1,23 @@
 <div class="container">
   <div class="row justify-content-center">
-<form id="user-form" action="/roles/<%= @role.role_id%>" method="POST">
+    <form id="user-form" action="/roles/<%= @role.role_id%>" method="POST">
 
-  <div class="form-group row">
-    <label for="input-fn" class="col-3 col-form-label">Role</label>
-    <div class="col-9">
-      <input type="text" id="input-fn" class="form-control"name="role_name" placeholder="Please enter new role" value="<%= @role.role_name %>">
-    </div>
+      <div class="form-group row">
+        <label for="input-fn" class="col-3 col-form-label">Role</label>
+        <div class="col-9">
+          <input type="text" id="input-fn" class="form-control"name="role_name" placeholder="Please enter new role" value="<%= @role.role_name %>">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <button class="btn btn-secondary btn-lg btn-block" type="submit" name="button" form="user-form">Save role</button>
+      </div>
+
+      <!-- Changes verb to PUT instead of POST if role already exists -->
+      <% if @role.role_id != nil%>
+        <input type="hidden" name="_method" value="PUT">
+      <% end %>
+
+    </form>
   </div>
-
-  <!-- <div class="form-group row">
-    <input type="submit" value="Save Role">
-  </div> -->
-
-  <div class="form-group row">
-    <button class="btn btn-secondary btn-lg btn-block" type="submit" name="button" form="user-form">Save role</button>
-  </div>
-  <!-- Changes verb to PUT instead of POST if role already exists -->
-  <% if @role.role_id != nil%>
-    <input type="hidden" name="_method" value="PUT">
-  <% end %>
-
-</form>
-</div>
 </div>

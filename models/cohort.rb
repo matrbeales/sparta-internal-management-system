@@ -1,5 +1,3 @@
-# require "pg"
-
 class Cohort < App
   attr_accessor :cohort_id, :cohort_name, :specialisation_id
 
@@ -14,15 +12,14 @@ class Cohort < App
 
   def self.all
       conn = self.open_connection
-
       sql = "SELECT * FROM cohort_table ORDER BY cohort_id;"
-
       results = conn.exec(sql)
 
       cohorts = results.map do |tuple|
         self.hydrate_data tuple
       end
 
+      conn.close
       return cohorts
     end
 
@@ -34,7 +31,6 @@ class Cohort < App
     cohort = self.hydrate_data result
 
     conn.close
-
     return cohort
   end
 
@@ -48,24 +44,29 @@ class Cohort < App
     end
 
     conn.exec(sql)
+    conn.close
   end
 
+  # Checks if the Cohort is being used by a User. Stops from deleting if it is
   def self.can_destroy? id
     conn = self.open_connection
-    sql1 = "SELECT COUNT(*) FROM user_table WHERE cohort_id = #{id};"
-    cohort_count = conn.exec(sql1).first["count"].to_i
+    sql = "SELECT COUNT(*) FROM user_table WHERE cohort_id = #{id};"
+    cohort_count = conn.exec(sql).first["count"].to_i
+    conn.close
 
     if cohort_count == 0
       return true
     else
       return false
     end
+    
   end
 
   def self.destroy id
     conn = self.open_connection
-    sql2 = "DELETE FROM cohort_table WHERE cohort_id = #{id};"
-    conn.exec(sql2)
+    sql = "DELETE FROM cohort_table WHERE cohort_id = #{id};"
+    conn.exec(sql)
+    conn.close
   end
 
 end

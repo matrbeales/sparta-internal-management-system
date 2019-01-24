@@ -9,6 +9,8 @@
       <th>Role</th>
     </tr>
   </thead>
+
+  <!-- Displays all cohorts -->
   <tbody>
     <% @users.each do |user|%>
       <tr>
@@ -19,6 +21,7 @@
       </tr>
     <% end %>
   </tbody>
+
 </table>
+
 <button class="btn btn-success btn-lg btn-block" type="button" onclick="window.location.href = 'users/new';" name="button">Add New</button>
-<!-- <button type="button" class="btn btn-success btn-lg btn-block" name="button"><a class="new-link" href="users/new">New entry</a></button> -->

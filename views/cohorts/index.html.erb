@@ -6,12 +6,19 @@
       <th>Cohort Name</th>
     </tr>
   </thead>
+
+  <!-- Displays all cohorts -->
   <tbody>
     <% @cohorts.each do |cohort|%>
       <tr>
-        <td><a href="/cohorts/<%= cohort.cohort_id %>"><%= cohort.cohort_name %></a></td>
+        <td>
+          <a href="/cohorts/<%= cohort.cohort_id %>"><%= cohort.cohort_name %></a>
+        </td>
       </tr>
     <% end %>
+
   </tbody>
+
 </table>
+
 <button class="btn btn-success btn-lg btn-block" type="button" onclick="window.location.href = 'cohorts/new';" name="button">Add New</button>
