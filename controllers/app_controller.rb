@@ -11,4 +11,6 @@ class AppController < Sinatra::Base
   # sets the view directory correctly
   set :views, Proc.new { File.join(root, "views") }
 
+  enable :sessions
+
 end

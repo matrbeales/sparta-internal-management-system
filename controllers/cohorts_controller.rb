@@ -2,30 +2,50 @@ class CohortsController < AppController
 
   # INDEX
   get "/" do
-    @cohorts = Cohort.all
-    erb :"cohorts/index.html"
+    if session[:logged_in] == true
+      @cohorts = Cohort.all
+      erb :"cohorts/index.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # NEW
   get "/new" do
-    # @cohort
-    @cohort = Cohort.new
-    erb :"cohorts/new.html"
+    if session[:logged_in] == true
+      @cohort = Cohort.new
+      erb :"cohorts/new.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # SHOW
   get "/:id" do
-    id = params[:id].to_i
-    @cohort = Cohort.find id
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      @cohort = Cohort.find id
 
-    erb :"cohorts/show.html"
+      erb :"cohorts/show.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
+
 
   # EDIT
   get "/:id/edit" do
-    id = params[:id].to_i
-    @cohort = Cohort.find id
-    erb :"cohorts/edit.html"
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      @cohort = Cohort.find id
+      erb :"cohorts/edit.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # CREATE
