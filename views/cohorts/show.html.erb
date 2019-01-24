@@ -1,0 +1,14 @@
+<h2>
+  Cohort: <%= @cohort.cohort_name%>
+</h2>
+
+<h2>
+  Specialisation: <%= App.get_info "specialisation", "specialisation_name", @cohort.specialisation_id%>
+</h2>
+
+<button type="button" name="button"><a href="<%= @cohort.cohort_id %>/edit">Edit cohort</a></button>
+
+<form class="" action="/cohorts/<%= @cohort.cohort_id %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" name="" value="Delete Cohort">
+</form>

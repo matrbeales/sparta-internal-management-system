@@ -1,0 +1,56 @@
+<form action="/users/<%= @user.user_id%>" method="POST">
+
+  <div class="">
+    <label>First Name</label>
+    <input type="text" name="first_name" placeholder="Please enter user's first name" value="<%= @user.first_name %>">
+  </div>
+
+  <div class="">
+    <label>Last Name</label>
+    <input type="text" name="last_name" placeholder="Please enter user's last name"  value="<%= @user.last_name %>">
+  </div>
+
+  <div class="">
+    <label>Email</label>
+    <input type="text" name="email" placeholder="Please enter user's email" value="<%= @user.email %>">
+  </div>
+
+  <div class="">
+    <label>Password</label>
+    <input type="text" name="password" placeholder="Please enter user's password" value="<%= @user.password %>">
+  </div>
+
+  <div class="">
+    <label>Cohort</label>
+    <select name="cohort_id">
+      <% for i in 1..(App.get_last_id "cohort").to_i%>
+        <% cohort_name = App.get_info "cohort", "cohort_name", i%>
+        <% if cohort_name != nil %>
+          <option value=<%= i %> <%= @user.cohort_id == i ? "selected" : "" %> > <%= cohort_name %></option>
+        <% end %>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="">
+    <label>Role</label>
+    <select name="role_id">
+      <% for i in 1..(App.get_last_id "role").to_i%>
+        <% role_name = App.get_info "role", "role_name", i%>
+        <% if role_name != nil %>
+          <option value=<%= i %> <%= @user.role_id == i ? "selected" : "" %> > <%= role_name %></option>
+        <% end %>
+      <% end %>
+    </select>
+  </div>
+
+  <!-- Changes verb to PUT instead of POST if user already exists -->
+  <% if @user.user_id != nil%>
+    <input type="hidden" name="_method" value="PUT">
+  <% end %>
+
+<div class="">
+  <input type="submit" value="Save User">
+</div>
+
+</form>

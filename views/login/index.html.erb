@@ -1,0 +1,28 @@
+<h1>Login</h1>
+
+<form action="/" method="POST">
+
+  <div>
+    <label>Email</label>
+    <input type="text" name="email" placeholder="Please enter your email">
+  </div>
+
+  <div>
+    <label>Password</label>
+    <input type="text" name="password" placeholder="Please enter your password">
+  </div>
+
+  <% if @correct_password == true %>
+    <p>Correct Password</p>
+  <% elsif @correct_password == false %>
+    <p>Incorrect Password</p>
+  <%else%>
+    <p>Neither</p>
+  <%end%>
+
+
+  <div class="">
+    <input type="submit" value="Submit">
+  </div>
+
+</form>

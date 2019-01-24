@@ -1,0 +1,7 @@
+<h1>Edit This Role</h1>
+
+<% if @redirect == true %>
+  <p class="incorrect-input">Please enter a value</p>
+<% end %>
+
+<%= erb :"roles/form", :layout => false %>

@@ -1,0 +1,7 @@
+<h1>Edit This Specialisation</h1>
+
+<% if @redirect == true %>
+  <p class="incorrect-input">Please enter a value</p>
+<% end %>
+
+<%= erb :"specialisations/form", :layout => false %>

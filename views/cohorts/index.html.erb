@@ -1,0 +1,17 @@
+<h1>Cohorts</h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Cohort Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cohorts.each do |cohort|%>
+      <tr>
+        <td><a href="/cohorts/<%= cohort.cohort_id %>"><%= cohort.cohort_name %></a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<button class="btn btn-success btn-lg btn-block" type="button" onclick="window.location.href = 'cohorts/new';" name="button">Add New</button>

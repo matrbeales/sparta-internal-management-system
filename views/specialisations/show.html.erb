@@ -1,0 +1,8 @@
+<h1><%= @specialisation.specialisation_name %></h1>
+
+<button type="button" name="button"><a href="<%= @specialisation.specialisation_id %>/edit">Edit Specialisation</a></button>
+
+<form class="" action="/specialisations/<%= @specialisation.specialisation_id %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" name="" value="Delete Specialisation">
+</form>

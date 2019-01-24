@@ -1,0 +1,24 @@
+<h1>Users</h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Cohort</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user|%>
+      <tr>
+        <td><a href="/users/<%= user.user_id %>"><%= user.first_name %> <%= user.last_name %></a></td>
+        <td><%= user.email %></td>
+        <td><%= App.get_info "cohort", "cohort_name", user.cohort_id.to_i%></td>
+        <td><%= App.get_info "role", "role_name", user.role_id.to_i%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<button class="btn btn-success btn-lg btn-block" type="button" onclick="window.location.href = 'users/new';" name="button">Add New</button>
+<!-- <button type="button" class="btn btn-success btn-lg btn-block" name="button"><a class="new-link" href="users/new">New entry</a></button> -->

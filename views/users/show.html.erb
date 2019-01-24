@@ -1,0 +1,98 @@
+
+<div class="container">
+
+<div class="row">
+  <div class="col-xs-4 col-sm-4 col-md-4">
+
+  </div>
+  <div class="col-xs-8 col-sm-8 col-md-8">
+    <h1>
+      <%= "#{@user.first_name} #{@user.last_name}"%>
+    </h1>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-xs-3 col-sm-0 col-md-3 col-lg-3">
+
+  </div>
+  <div class="col-xs-3 col-sm-6 col-md-3 col-lg-3">
+  <h4>  Email: </h4>
+  </div>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <%= @user.email%>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-xs-3 col-sm-0 col-md-3 col-lg-3">
+
+  </div>
+  <div class="col-xs-3 col-sm-6 col-md-3 col-lg-3">
+  <h4>  Password: </h4>
+  </div>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <%= @user.password%>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-xs-3 col-sm-0 col-md-3 col-lg-3">
+
+  </div>
+  <div class="col-xs-3 col-sm-6 col-md-3 col-lg-3">
+    <h4>Cohort:</h4>
+  </div>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <%= App.get_info "cohort", "cohort_name", @user.cohort_id%>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-xs-3 col-sm-0 col-md-3 col-lg-3">
+
+  </div>
+  <div class="col-xs-3 col-sm-6 col-md-3 col-lg-3">
+    <h4>  Specialisation:</h4>
+  </div>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <%= App.get_info "specialisation", "specialisation_name", (App.get_info "cohort", "specialisation_id", @user.cohort_id) %>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-xs-3 col-sm-0 col-md-3 col-lg-3"></div>
+    <div class="col-xs-3 col-sm-6 col-md-3 col-lg-3">
+      <h4>Role:</h4>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <%= App.get_info "role", "role_name", @user.role_id%>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="row">
+  <div class="col-xs-0 col-sm-1 col-md-3 col-lg-3"></div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+  <button type="button" name="button"><a href="<%= @user.user_id %>/edit">Edit User</a></button>
+</div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <form class="" action="/users/<%= @user.user_id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" name="" value="Delete User">
+      </form>
+  </div>
+</div>
+</div>
