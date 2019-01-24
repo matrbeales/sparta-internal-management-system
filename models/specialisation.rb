@@ -1,4 +1,4 @@
-require "pg"
+# require "pg"
 
 class Specialisation < App
   attr_accessor :specialisation_id, :specialisation_name
@@ -56,7 +56,7 @@ class Specialisation < App
   def self.can_destroy? id
     conn = self.open_connection
     sql1 = "SELECT COUNT(*) FROM cohort_table WHERE specialisation_id = #{id};"
-    specialisation_count = conn.exec(sql1).first
+    specialisation_count = conn.exec(sql1).first["count"].to_i
     if specialisation_count == 0
       return true
     else
