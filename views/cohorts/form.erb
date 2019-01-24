@@ -1,6 +1,9 @@
-<form action="/cohorts/<%= @cohort.cohort_id%>" method="POST">
+<div class="container">
+  <div class="row justify-content-center">
+
+<form id="cohort-form" action="/cohorts/<%= @cohort.cohort_id%>" method="POST">
 <!-- This will get the Cohort Name from the models and allow you to inject data via manual input -->
-    <div class="">
+    <div class="form-group row">
       <label>Cohort Name</label>
       <input type="text" name="cohort_name" placeholder="Please enter your cohort" value="<%= @cohort.cohort_name %>">
     </div>
@@ -26,4 +29,6 @@
     <input type="submit" value="Save Cohort">
   </div>
 
-</form>
+    </form>
+  </div>
+</div>
