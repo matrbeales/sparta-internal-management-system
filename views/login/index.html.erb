@@ -1,32 +1,40 @@
-<link href="/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
 <div class="container">
-  <div class="col-md-offset-5 col-md-3">
+  <div class="row justify-content-center">
     <div class="form-login">
-    <form action="/" method="POST">
-      <h1>Login</h1>
-      <div>
-        <label>Email</label>
-        <input class="form-control input-sm chat-input" placeholder="username" type="text" name="email" placeholder="Please enter your email">
-      </div>
 
-      <div class="loginsubmit">
-        <label>Password</label>
-        <input type="text" name="password" class="form-control input-sm chat-input" class="coded" placeholder="Please enter your password">
-      </div>
+      <form action="/" method="POST">
 
-      <% if @correct_login == false %>
-        <p class="incorrect-input">Your email or password is incorrect</p>
-      <% end %>
+        <h1 class="text-center">Login</h1><br>
 
-      <% if @not_logged_in == true %>
-        <p class="incorrect-input">You must log in before accessing this page</p>
+        <div class="from-group row">
+          <label class="col-3 col-form-label">Email</label>
+          <div class="col-9">
+            <input class="form-control input-sm chat-input" placeholder="username" type="text" name="email" placeholder="Please enter your email">
+          </div>
+        </div><br>
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Password</label>
+          <div class="col-9">
+            <input type="text" name="password" class="form-control input-sm chat-input" class="coded" placeholder="Please enter your password">
+          </div>
+        </div>
+
+        <% if @correct_login == false %>
+          <p class="incorrect-input">Your email or password is incorrect</p>
         <% end %>
 
-    <div>
-      <input class="btn btn-primary btn-md" type="submit" value="Submit">
-    </div>
+        <% if @not_logged_in == true %>
+          <p class="incorrect-input">You must log in before accessing this page</p>
+          <% end %>
 
-  </form>
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <input class="btn btn-primary btn-md btn-block" type="submit" value="Submit">
+          </div>
+        </div>
+
+      </form>
+    </div>
   </div>
-  </div>
-  </div>
+</div>
