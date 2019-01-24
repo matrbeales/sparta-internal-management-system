@@ -1,29 +1,32 @@
-<h1>Login</h1>
+<link href="/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+<div class="container">
+  <div class="col-md-offset-5 col-md-3">
+    <div class="form-login">
+    <form action="/" method="POST">
+      <h1>Login</h1>
+      <div>
+        <label>Email</label>
+        <input class="form-control input-sm chat-input" placeholder="username" type="text" name="email" placeholder="Please enter your email">
+      </div>
 
-<form action="/" method="POST">
+      <div>
+        <label>Password</label>
+        <input type="text" name="password" class="form-control input-sm chat-input" class="coded" placeholder="Please enter your password">
+      </div>
 
-  <div>
-    <label>Email</label>
-    <input type="text" name="email" placeholder="Please enter your email">
+      <% if @correct_login == false %>
+        <p class="incorrect-input">Your email or password is incorrect</p>
+      <% end %>
+
+      <% if @not_logged_in == true %>
+        <p class="incorrect-input">You must log in before accessing this page</p>
+        <% end %>
+
+    <div class="loginsubmit">
+      <input class="btn btn-primary btn-md" type="submit" value="Submit">
+    </div>
+
+  </form>
   </div>
-
-  <div>
-    <label>Password</label>
-    <input type="text" name="password" placeholder="Please enter your password">
   </div>
-
-  <% if @correct_login == false %>
-    <p class="incorrect-input">Your email or password is incorrect</p>
-  <% end %>
-
-  <% if @not_logged_in == true %>
-    <p class="incorrect-input">You must log in before accessing this page</p>
-  <% end %>
-
-
-
-  <div class="">
-    <input type="submit" value="Submit">
   </div>
-
-</form>
