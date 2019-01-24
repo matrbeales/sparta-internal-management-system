@@ -1,28 +1,31 @@
 <form action="/users/<%= @user.user_id%>" method="POST">
 
-  <div class="form-group">
-    <label for = "form-control"> First Name</label><br>
-    <input id="exampleFormControlInput1" class = "form control" type="text" name="first_name" placeholder="Please enter user's first name" value="<%= @user.first_name %>">
+  <div class= "inputform">
+    <label for> First Name</label><br>
+    <input class = "form-control" type="text" name="first_name" placeholder="Please enter user's first name" value="<%= @user.first_name %>">
   </div>
 
   <div class="">
     <label>Last Name</label><br>
-    <input type="text" name="last_name" placeholder="Please enter user's last name"  value="<%= @user.last_name %>">
+    <input class = "form-control" type="text" name="last_name" placeholder="Please enter user's last name"  value="<%= @user.last_name %>">
   </div>
 
   <div class="">
     <label>Email</label><br>
-    <input type="text" name="email" placeholder="Please enter user's email" value="<%= @user.email %>">
+    <input class = "form-control" type="text" name="email" placeholder="Leonaidas@spartaglobal.com" value="<%= @user.email %>">
+    <small id="emailHelp" class="form-text text-muted">This must be your Sparta Global address.</small>
   </div>
 
-  <div class="">
-    <label>Password</label><br>
-    <input type="text" name="password" placeholder="Please enter user's password" value="<%= @user.password %>">
+  <div class="class="input-group mb-3">
+    <label >Password</label><br>
+    <input class = "form-control" type="text" name="password" placeholder="Please enter user's password" value="<%= @user.password %>">
+    <small id="emailHelp" class="form-text text-muted">This must be 8 characters long and include 1 upper and 1 lower case letter.</small>
   </div>
 
   <div class="">
     <label>Cohort</label><br>
-    <select name="cohort_id">
+    <select name="cohort_id" class="custom-select">
+      <option selected>Please Select...</option>
       <% for i in 1..(App.get_last_id "cohort").to_i%>
         <% cohort_name = App.get_info "cohort", "cohort_name", i%>
         <% if cohort_name != nil %>
@@ -34,7 +37,8 @@
 
   <div class="">
     <label>Role</label><br>
-    <select name="role_id"><br>
+    <select name="role_id" class="custom-select"><br>
+      <option selected>Please Select...</option>
       <% for i in 1..(App.get_last_id "role").to_i%>
         <% role_name = App.get_info "role", "role_name", i%>
         <% if role_name != nil %>
