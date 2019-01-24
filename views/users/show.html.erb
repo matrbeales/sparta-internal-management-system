@@ -1,4 +1,3 @@
-
 <div class="container">
 
   <div class="row justify-content-center">
@@ -57,11 +56,11 @@
       <button class="btn btn-secondary btn-lg btn-block" type="button" onclick="window.location.href = '<%= @user.user_id %>/edit';" name="button">Edit</button>
     </div>
     <div class="col-3">
-      <form class="d-none" id="delete-button" action="/users/<%= @user.user_id %>" method="POST">
+      <form class="d-none" id="delete-user" action="/users/<%= @user.user_id %>" method="POST">
         <input type="hidden" name="_method" value="DELETE">
         <input type="submit" name="" value="Delete User">
       </form>
-      <button class="btn btn-danger btn-lg btn-block" type="submit" name="button" form="delete-button" >Delete</button>
+      <button class="btn btn-danger btn-lg btn-block" type="submit" name="button" form="delete-user" >Delete</button>
     </div>
   </div>
 </div>
