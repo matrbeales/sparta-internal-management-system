@@ -53,7 +53,8 @@ class Cohort < App
   def self.can_destroy? id
     conn = self.open_connection
     sql1 = "SELECT COUNT(*) FROM user_table WHERE cohort_id = #{id};"
-    cohort_count = conn.exec(sql1).first
+    cohort_count = conn.exec(sql1).first["count"].to_i
+
     if cohort_count == 0
       return true
     else
@@ -63,7 +64,7 @@ class Cohort < App
 
   def self.destroy id
     conn = self.open_connection
-    sql2 = "DELETE FROM cohort_table WHERE role_id = #{id};"
+    sql2 = "DELETE FROM cohort_table WHERE cohort_id = #{id};"
     conn.exec(sql2)
   end
 
