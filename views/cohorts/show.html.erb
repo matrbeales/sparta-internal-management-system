@@ -1,20 +1,17 @@
-<div class="container">
+<h2>
+  Cohort: <%= @cohort.cohort_name%>
+</h2>
 
-  <div class="row justify-content-center">
-    <div class="col-6 text-center border border-dark rounded">
-      <h1><%= @cohort.cohort_name %></h1>
-    </div>
-  </div><br>
+<h2>
+  Specialisation: <%= App.get_info "specialisation", "specialisation_name", @cohort.specialisation_id%>
+</h2>
 
-  <div class="row justify-content-center">
-    <div class="col-3">
-      <button class="btn btn-secondary btn-lg btn-block" type="button" onclick="window.location.href = '<%= @cohort.cohort_id %>/edit';" name="button">Edit</button>
-    </div>
-    <div class="col-3">
-      <form class="d-none" id="delete-cohort" action="/cohorts/<%= @cohort.cohort_id %>" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" name="" value="Delete Cohort">
-      </form>
-      <button class="btn btn-danger btn-lg btn-block" type="submit" name="button" form="delete-cohort">Delete</button>
-    </div>
-  </div>
+<button type="button" name="button"><a href="<%= @cohort.cohort_id %>/edit">Edit cohort</a></button>
+
+<form class="" action="/cohorts/<%= @cohort.cohort_id %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" name="" value="Delete Cohort">
+</form>
+<% if @cannot_delete == true %>
+  <p class = "incorrect-input">Cannot delete cohort as it is currently in use.</p>
+<% end %>
