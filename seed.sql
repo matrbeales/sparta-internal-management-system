@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS role_table;
-DROP TABLE IF EXISTS specialisation_table;
-DROP TABLE IF EXISTS cohort_table;
 DROP TABLE IF EXISTS user_table;
+DROP TABLE IF EXISTS role_table;
+DROP TABLE IF EXISTS cohort_table;
+DROP TABLE IF EXISTS specialisation_table;
 
 CREATE TABLE role_table(
 	role_id SERIAL PRIMARY KEY,
@@ -48,6 +48,6 @@ VALUES
 
 INSERT INTO user_table (first_name, last_name, email, password, cohort_id, role_id)
 VALUES
-	('Anthony', 'Ushedo', 'antz@sparta.com', 'password', 1, 2),
-	('Moe', 'El-Zein', 'moe@sparta.com', 'password', 1, 2),
-	('Laura', 'Green', 'lgreen@sparta.com', 'password', 1, 2);
+	('Anthony', 'Ushedo', 'antz@spartaglobal.com', 'Password1', 1, 2),
+	('Moe', 'El-Zein', 'moe@spartaglobal.com', 'Password1', 1, 2),
+	('Laura', 'Green', 'lgreen@spartaglobal.com', 'Password1', 1, 2);

@@ -22,3 +22,18 @@
 .incorrect-input {
   color: red;
 }
+
+.col-3 {
+  text-align: center;
+  margin-left: 300px;
+  font-weight: bold;
+}
+
+h1 {
+  text-align: center;
+
+}
+
+.container {
+  text-align: center;
+}
