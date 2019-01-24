@@ -1,28 +1,31 @@
 <form action="/users/<%= @user.user_id%>" method="POST">
 
-  <div class="">
-    <label>First Name</label>
-    <input type="text" name="first_name" placeholder="Please enter user's first name" value="<%= @user.first_name %>">
+  <div class= "inputform">
+    <label for> First Name</label><br>
+    <input class = "form-control" type="text" name="first_name" placeholder="Please enter user's first name" value="<%= @user.first_name %>">
   </div>
 
   <div class="">
-    <label>Last Name</label>
-    <input type="text" name="last_name" placeholder="Please enter user's last name"  value="<%= @user.last_name %>">
+    <label>Last Name</label><br>
+    <input class = "form-control" type="text" name="last_name" placeholder="Please enter user's last name"  value="<%= @user.last_name %>">
   </div>
 
   <div class="">
-    <label>Email</label>
-    <input type="text" name="email" placeholder="Please enter user's email" value="<%= @user.email %>">
+    <label>Email</label><br>
+    <input class = "form-control" type="text" name="email" placeholder="Leonaidas@spartaglobal.com" value="<%= @user.email %>">
+    <small id="emailHelp" class="form-text text-muted">This must be your Sparta Global address.</small>
+  </div>
+
+  <div class="class="input-group mb-3">
+    <label >Password</label><br>
+    <input class = "form-control" type="text" name="password" placeholder="Please enter user's password" value="<%= @user.password %>">
+    <small id="emailHelp" class="form-text text-muted">This must be 8 characters long and include 1 upper and 1 lower case letter.</small>
   </div>
 
   <div class="">
-    <label>Password</label>
-    <input type="text" name="password" placeholder="Please enter user's password" value="<%= @user.password %>">
-  </div>
-
-  <div class="">
-    <label>Cohort</label>
-    <select name="cohort_id">
+    <label>Cohort</label><br>
+    <select name="cohort_id" class="custom-select">
+      <option selected>Please Select...</option>
       <% for i in 1..(App.get_last_id "cohort").to_i%>
         <% cohort_name = App.get_info "cohort", "cohort_name", i%>
         <% if cohort_name != nil %>
@@ -33,16 +36,17 @@
   </div>
 
   <div class="">
-    <label>Role</label>
-    <select name="role_id">
+    <label>Role</label><br>
+    <select name="role_id" class="custom-select"><br>
+      <option selected>Please Select...</option>
       <% for i in 1..(App.get_last_id "role").to_i%>
         <% role_name = App.get_info "role", "role_name", i%>
         <% if role_name != nil %>
-          <option value=<%= i %> <%= @user.role_id == i ? "selected" : "" %> > <%= role_name %></option>
+          <option value=<%= i %> <%= @user.role_id == i ? "selected" : "" %> > <%= role_name %></option><br>
         <% end %>
       <% end %>
     </select>
-  </div>
+  </div><br>
 
   <!-- Changes verb to PUT instead of POST if user already exists -->
   <% if @user.user_id != nil%>
@@ -50,7 +54,7 @@
   <% end %>
 
 <div class="">
-  <input type="submit" value="Save User">
+  <input type="submit" value="Save User"><br>
 </div>
 
 </form>
