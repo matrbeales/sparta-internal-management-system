@@ -87,8 +87,14 @@ class CohortsController < AppController
   # DESTROY
   delete "/:id" do
     id = params[:id].to_i
-    Cohort.destroy id
-    redirect "/cohorts"
+    if Cohort.can_destroy?(id) == true
+      Cohort.destroy id
+      redirect "/cohorts"
+    else
+      @cohort = Cohort.find id
+      @cannot_delete = true
+      erb :"cohorts/show.html"
+    end
   end
 
 
