@@ -1,27 +1,30 @@
 class ApiController < AppController
 
-  # INDEX
-  post "/" do
-    # postman_header = request.env['HTTP_AUTHORIZATION']
-    # test_value = request.env['HTTP_TEST']
-    # test_value = request.env['HTTP_TEST']
-    body = JSON.parse(request.body.read.to_s)
+  get "/" do
+    erb :"login/index.html"
+  end
 
+  post "/" do
+    body = JSON.parse(request.body.read.to_s)
     email = body["email"]
     password = body["password"]
 
+    if (Login.password_match? email.downcase, password) == true
+      key = "It's a secret to everybody"
+      digest = OpenSSL::Digest.new('sha1')
+      secret = OpenSSL::HMAC.new(key, digest)
 
-    puts email
-    puts password
-    {
-      # key1: "value1",
-      # key2: "value2",
-      # header: "#{postman_header}",
-      # test: "#{test_value}"
-      body_key: "#{body}"
-    }.to_json
+      payload = {message: 'You have been authenticated'}
+      token = JWT.encode payload, nil, 'none'
+
+      {
+        success: true,
+        message: "Enjoy your token",
+        token: token
+      }.to_json
+
+    end
 
   end
-
 
 end

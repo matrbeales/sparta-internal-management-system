@@ -1,3 +1,4 @@
+require 'jwt'
 require "sinatra"
 require "sinatra/contrib"
 require "sinatra/reloader" if development?
@@ -21,4 +22,4 @@ map('/users') {run UsersController}
 map('/cohorts') {run CohortsController}
 map('/roles') {run RolesController}
 map('/specialisations') {run SpecialisationsController}
-map('/api') {run APIController}
+map('/api') {run ApiController}
