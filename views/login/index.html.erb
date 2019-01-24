@@ -11,7 +11,7 @@
 
       <div>
         <label>Password</label>
-        <input type="text" name="password" class="form-control input-sm chat-input" placeholder="Please enter your password">
+        <input type="text" name="password" class="form-control input-sm chat-input" class="coded" placeholder="Please enter your password">
       </div>
 
       <% if @correct_login == false %>
@@ -22,11 +22,9 @@
         <p class="incorrect-input">You must log in before accessing this page</p>
         <% end %>
 
-        <button type="submit" class="btn btn-primary"><span class="oi oi-account-login" title="icon name" aria-hidden="true"></span> Sign in
-</button>
-    <!-- <div class="">
-      <input class="btn btn-primary btn-md" type="submit" value="Submit" <i class="fa fa-sign-in"></i>
-    </div> -->
+    <div class="loginsubmit">
+      <input class="btn btn-primary btn-md" type="submit" value="Submit">
+    </div>
 
   </form>
   </div>
