@@ -21,4 +21,10 @@ class LoginController < AppController
 
   end
 
+  # DESTROY
+  delete "/" do
+    session[:logged_in] = false
+    redirect "/"
+  end
+
 end
