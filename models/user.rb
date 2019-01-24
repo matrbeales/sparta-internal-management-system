@@ -1,4 +1,4 @@
-require "pg"
+# require "pg"
 
 class User < App
 attr_accessor :user_id, :first_name, :last_name, :email, :password, :cohort_id, :role_id

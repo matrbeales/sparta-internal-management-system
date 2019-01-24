@@ -5,8 +5,8 @@ class LoginController < AppController
     erb :"login/index.html"
   end
 
-
-  # CREATE
+  # A post request is sent when the user tries to submit their email & password.
+  # This checks those details, and applies a session if they match
   post "/" do
     email = params[:email].downcase
     password = params[:password]
@@ -21,7 +21,7 @@ class LoginController < AppController
 
   end
 
-  # DESTROY
+  # delete request sent when the user tries to log out
   delete "/" do
     session[:logged_in] = false
     redirect "/"
