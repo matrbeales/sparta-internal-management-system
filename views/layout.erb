@@ -11,6 +11,14 @@
   </head>
   <body>
     <%= erb :"partials/navigation", :layout => false %>
-    <%= yield %>
+
+    <div class="container main-div">
+      <div class="row justify-content-center">
+        <div class="col">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
