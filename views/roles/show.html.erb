@@ -1,16 +1,21 @@
+<div class="container">
 
+<div class="row justify-content-center">
+  <div class="col-6 text-center border border-dark rounded">
+    <h1><%= "#{@role.role_name}"%></h1>
+  </div>
+</div><br>
 
-<h1>
-  <%= "#{@role.role_name}"%>
-</h1>
+<div class="row justify-content-center">
+  <div class="col-3">
+      <button class="btn btn-secondary btn-lg btn-block" type="button" onclick="window.location.href = ><%= @role.role_id %>/edit';" name="button">Edit</button>
+  </div>
 
-<h2>
-  Role: <%= App.get_info "role", "role_name", @role.role_id%>
-</h2>
+</div>
 
-<button type="button" name="button"><a href="<%= @role.role_id %>/edit">Edit Role</a></button>
+  <form class="" action="/roles/<%= @role.role_id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" name="" value="Delete Role">
+  </form>
 
-<form class="" action="/roles/<%= @role.role_id %>" method="POST">
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" name="" value="Delete Role">
-</form>
+</div>
