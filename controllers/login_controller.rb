@@ -6,41 +6,19 @@ class LoginController < AppController
 
   end
 
-  # NEW
-  get "/new" do
-    erb :"login/new.html"
-
-  end
-
-  # SHOW
-  get "/:id" do
-    erb :"login/show.html"
-
-  end
-
-  # EDIT
-  get "/:id/edit" do
-    erb :"login/edit.html"
-
-  end
-
   # CREATE
   post "/" do
-    redirect "/"
+    email = params[:email].downcase
+    password = params[:password]
+
+    if (Login.password_match? email, password) == true
+      @correct_password = true
+      erb :"login/index.html"
+    else
+      @correct_password = false
+      erb :"login/index.html"
+    end
 
   end
-
-  # UPDATE
-  put "/:id" do
-    redirect "/#{id}"
-
-  end
-
-  # DESTROY
-  delete "/:id" do
-    redirect "/"
-
-  end
-
 
 end
