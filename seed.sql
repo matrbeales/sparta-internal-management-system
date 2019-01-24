@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS role_table;
-DROP TABLE IF EXISTS specialisation_table;
-DROP TABLE IF EXISTS cohort_table;
 DROP TABLE IF EXISTS user_table;
+DROP TABLE IF EXISTS role_table;
+DROP TABLE IF EXISTS cohort_table;
+DROP TABLE IF EXISTS specialisation_table;
 
 CREATE TABLE role_table(
 	role_id SERIAL PRIMARY KEY,
