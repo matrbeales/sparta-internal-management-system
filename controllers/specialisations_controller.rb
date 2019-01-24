@@ -48,42 +48,59 @@ class SpecialisationsController < AppController
 
   # CREATE
   post "/" do
-    if App.correct_form_entry?(params[:specialisation_name]) == true
-      specialisation = Specialisation.new
-      specialisation.specialisation_id = params[:specialisation_id]
-      specialisation.specialisation_name = params[:specialisation_name].strip
-      specialisation.save
-      redirect "/specialisations"
+    if session[:logged_in] == true
+      if App.correct_form_entry?(params[:specialisation_name]) == true
+        specialisation = Specialisation.new
+        specialisation.specialisation_id = params[:specialisation_id]
+        specialisation.specialisation_name = params[:specialisation_name].strip
+        specialisation.save
+        redirect "/specialisations"
+      else
+        @redirect = true
+        @specialisation = Specialisation.new
+        erb :"specialisations/new.html"
+      end
+
     else
-      @redirect = true
-      @specialisation = Specialisation.new
-      erb :"specialisations/new.html"
+      @not_logged_in = true
+      erb :"login/index.html"
     end
 
   end
 
   # UPDATE
   put "/:id" do
-    id = params[:id].to_i
+    if session[:logged_in] == true
+      id = params[:id].to_i
 
-    if App.correct_form_entry?(params[:specialisation_name]) == true
-      specialisation = Specialisation.find id
-      specialisation.specialisation_name = params[:specialisation_name].strip
-      specialisation.save
-      redirect "/specialisations/#{id}"
+      if App.correct_form_entry?(params[:specialisation_name]) == true
+        specialisation = Specialisation.find id
+        specialisation.specialisation_name = params[:specialisation_name].strip
+        specialisation.save
+        redirect "/specialisations/#{id}"
+      else
+        @redirect = true
+        @specialisation = Specialisation.find id
+        erb :"specialisations/edit.html"
+      end
+
     else
-      @redirect = true
-      @specialisation = Specialisation.find id
-      erb :"specialisations/edit.html"
+      @not_logged_in = true
+      erb :"login/index.html"
     end
 
   end
 
   # DESTROY
   delete "/:id" do
-    id = params[:id].to_i
-    Specialisation.destroy id
-    redirect "/specialisations"
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      Specialisation.destroy id
+      redirect "/specialisations"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
 

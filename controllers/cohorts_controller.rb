@@ -49,46 +49,60 @@ class CohortsController < AppController
 
   # CREATE
   post "/" do
-    if App.correct_form_entry?(params[:cohort_name]) == true
-      cohort = Cohort.new
-      cohort.cohort_id = params[:cohort_id]
-      cohort.cohort_name = params[:cohort_name].strip
-      cohort.specialisation_id = params[:specialisation_id]
+    if session[:logged_in] == true
+      if App.correct_form_entry?(params[:cohort_name]) == true
+        cohort = Cohort.new
+        cohort.cohort_id = params[:cohort_id]
+        cohort.cohort_name = params[:cohort_name].strip
+        cohort.specialisation_id = params[:specialisation_id]
+        cohort.save
+        redirect "/cohorts"
+      else
+        @redirect = true
+        @cohort = Cohort.new
+        erb :"cohorts/new.html"
+      end
 
-      cohort.save
-      redirect "/cohorts"
     else
-      @redirect = true
-      @cohort = Cohort.new
-      erb :"cohorts/new.html"
+      @not_logged_in = true
+      erb :"login/index.html"
     end
   end
 
   # UPDATE
   put "/:id" do
-    id = params[:id].to_i
+    if session[:logged_in] == true
+      id = params[:id].to_i
 
-    if App.correct_form_entry?(params[:cohort_name]) == true
-      cohort = Cohort.find id
+      if App.correct_form_entry?(params[:cohort_name]) == true
+        cohort = Cohort.find id
+        cohort.cohort_name = params[:cohort_name].strip
+        cohort.specialisation_id = params[:specialisation_id]
+        cohort.save
+        redirect "/cohorts/#{id}"
+      else
+        @redirect = true
+        @cohort = Cohort.find id
+        erb :"cohorts/edit.html"
+      end
 
-      cohort.cohort_name = params[:cohort_name].strip
-      cohort.specialisation_id = params[:specialisation_id]
-
-      cohort.save
-      redirect "/cohorts/#{id}"
     else
-      @redirect = true
-      @cohort = Cohort.find id
-      erb :"cohorts/edit.html"
+      @not_logged_in = true
+      erb :"login/index.html"
     end
 
   end
 
   # DESTROY
   delete "/:id" do
-    id = params[:id].to_i
-    Cohort.destroy id
-    redirect "/cohorts"
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      Cohort.destroy id
+      redirect "/cohorts"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
 
