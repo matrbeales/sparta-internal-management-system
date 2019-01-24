@@ -50,10 +50,21 @@ class Cohort < App
     conn.exec(sql)
   end
 
+  def self.can_destroy? id
+    conn = self.open_connection
+    sql1 = "SELECT COUNT(*) FROM user_table WHERE cohort_id = #{id};"
+    cohort_count = conn.exec(sql1).first
+    if cohort_count == 0
+      return true
+    else
+      return false
+    end
+  end
+
   def self.destroy id
     conn = self.open_connection
-    sql = "DELETE FROM cohort_table WHERE cohort_id = #{id};"
-    conn.exec(sql)
+    sql2 = "DELETE FROM cohort_table WHERE role_id = #{id};"
+    conn.exec(sql2)
   end
 
 end
