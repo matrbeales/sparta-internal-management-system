@@ -53,10 +53,21 @@ class Specialisation < App
     conn.exec(sql)
   end
 
+  def self.can_destroy? id
+    conn = self.open_connection
+    sql1 = "SELECT COUNT(*) FROM cohort_table WHERE specialisation_id = #{id};"
+    specialisation_count = conn.exec(sql1).first
+    if specialisation_count == 0
+      return true
+    else
+      return false
+    end
+  end
+
   def self.destroy id
     conn = self.open_connection
-    sql = "DELETE FROM specialisation_table WHERE specialisation_id = #{id};"
-    conn.exec(sql)
+    sql2 = "DELETE FROM specialisation_table WHERE specialisation_id = #{id};"
+    conn.exec(sql2)
   end
 
 end

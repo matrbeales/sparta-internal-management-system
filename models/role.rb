@@ -40,10 +40,21 @@ end
     conn.exec(sql)
   end
 
+  def self.can_destroy? id
+    conn = self.open_connection
+    sql1 = "SELECT COUNT(*) FROM user_table WHERE role_id = #{id};"
+    role_count = conn.exec(sql1).first
+    if role_count == 0
+      return true
+    else
+      return false
+    end
+  end
+
   def self.destroy id
     conn = self.open_connection
-    sql = "DELETE FROM role_table WHERE role_id = #{id};"
-    conn.exec(sql)
+    sql2 = "DELETE FROM role_table WHERE role_id = #{id};"
+    conn.exec(sql2)
   end
 
 end
