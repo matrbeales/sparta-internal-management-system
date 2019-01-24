@@ -48,48 +48,67 @@ class RolesController < AppController
 
   # CREATE
   post "/" do
-    if App.correct_form_entry?(params[:role_name]) == true
-      role = Role.new
-      role.role_id = params[:role_id]
-      role.role_name = params[:role_name].strip
-      role.save
-      redirect "/roles"
+    if session[:logged_in] == true
+      if App.correct_form_entry?(params[:role_name]) == true
+        role = Role.new
+        role.role_id = params[:role_id]
+        role.role_name = params[:role_name].strip
+        role.save
+        redirect "/roles"
+      else
+        @redirect = true
+        @role = Role.new
+        erb :"roles/new.html"
+      end
 
     else
-      @redirect = true
-      @role = Role.new
-      erb :"roles/new.html"
+      @not_logged_in = true
+      erb :"login/index.html"
     end
 
   end
 
   # UPDATE
   put "/:id" do
-    id = params[:id].to_i
+    if session[:logged_in] == true
+      id = params[:id].to_i
 
-    if App.correct_form_entry?(params[:role_name]) == true
-      role = Role.find id
-      role.role_name = params[:role_name].strip
-      role.save
-      redirect "/roles/#{id}"
+      if App.correct_form_entry?(params[:role_name]) == true
+        role = Role.find id
+        role.role_name = params[:role_name].strip
+        role.save
+        redirect "/roles/#{id}"
+      else
+        @redirect = true
+        @role = Role.find id
+        erb :"roles/edit.html"
+      end
+
     else
-      @redirect = true
-      @role = Role.find id
-      erb :"roles/edit.html"
+      @not_logged_in = true
+      erb :"login/index.html"
     end
 
   end
 
   # DESTROY
   delete "/:id" do
-    id = params[:id].to_i
-    if Role.can_destroy?(id) == true
-      Role.destroy id
-      redirect "/roles"
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      if Role.can_destroy?(id) == true
+        Role.destroy id
+        redirect "/roles"
+      else
+        @role = Role.find id
+        @cannot_delete = true
+        erb :"roles/show.html"
+      end
+
     else
-      @role = Role.find id
-      @cannot_delete = true
-      erb :"roles/show.html"
+      @not_logged_in = true
+      erb :"login/index.html"
     end
+
   end
+
 end
