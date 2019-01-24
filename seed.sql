@@ -48,6 +48,7 @@ VALUES
 
 INSERT INTO user_table (first_name, last_name, email, password, cohort_id, role_id)
 VALUES
+	('Admin', 'Istrator', 'admin@spartaglobal.com', 'Password1', 2, 3),
 	('Anthony', 'Ushedo', 'antz@spartaglobal.com', 'Password1', 1, 2),
 	('Moe', 'El-Zein', 'moe@spartaglobal.com', 'Password1', 1, 2),
 	('Laura', 'Green', 'lgreen@spartaglobal.com', 'Password1', 1, 2);

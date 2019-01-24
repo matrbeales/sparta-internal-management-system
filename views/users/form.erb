@@ -37,13 +37,15 @@
         <label for="input-ln" class="col-3 col-form-label">Cohort</label>
         <div class="col-9">
           <select name="cohort_id" class="custom-select">
-            <option selected>Please Select...</option>
+
+            <!-- Loops through all cohort rows in DB. Gets name of rows that exist. Puts name & corresponding id into a dropdown menu to choose from. Auto-selects current choice if edit -->
             <% for i in 1..(App.get_last_id "cohort").to_i%>
               <% cohort_name = App.get_info "cohort", "cohort_name", i%>
               <% if cohort_name != nil %>
                 <option value=<%= i %> <%= @user.cohort_id == i ? "selected" : "" %> > <%= cohort_name %></option>
               <% end %>
             <% end %>
+
           </select>
         </div>
       </div>
@@ -52,13 +54,15 @@
         <label for="input-ln" class="col-3 col-form-label">Role</label>
         <div class="col-9">
           <select name="role_id" class="custom-select">
-            <option selected>Please Select...</option>
+
+            <!-- Loops through all cohort rows in DB. Gets name of rows that exist. Puts name & corresponding id into a dropdown menu to choose from. Auto-selects current choice if edit -->
             <% for i in 1..(App.get_last_id "role").to_i%>
               <% role_name = App.get_info "role", "role_name", i%>
               <% if role_name != nil %>
                 <option value=<%= i %> <%= @user.role_id == i ? "selected" : "" %> > <%= role_name %></option>
               <% end %>
             <% end %>
+
           </select>
         </div>
       </div>
@@ -71,8 +75,7 @@
       <div class="form-group row">
         <button class="btn btn-secondary btn-lg btn-block" type="submit" name="button" form="user-form">Save User</button>
       </div>
-      
-    </form>
 
+    </form>
   </div>
 </div>
