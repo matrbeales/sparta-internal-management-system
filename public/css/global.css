@@ -22,13 +22,17 @@
   color: red;
 }
 
-.col-2 {
+.col-3 {
   text-align: center;
-  margin-left: 300px
+  margin-left: 300px;
+  font-weight: bold;
 }
 
 h1 {
   text-align: center;
-  margin-top: 50px;
-  margin-right: 100px
+
+}
+
+.container {
+  text-align: center;
 }
