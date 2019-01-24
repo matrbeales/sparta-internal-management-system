@@ -83,7 +83,13 @@ class RolesController < AppController
   # DESTROY
   delete "/:id" do
     id = params[:id].to_i
-    Role.destroy id
-    redirect "/roles"
+    if Role.can_destroy?(id) == true
+      Role.destroy id
+      redirect "/roles"
+    else
+      @role = Role.find id
+      @cannot_delete = true
+      erb :"roles/show.html"
+    end
   end
 end
