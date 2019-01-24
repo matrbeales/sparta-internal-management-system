@@ -16,5 +16,8 @@
         <input type="submit" name="" value="Delete Cohort">
       </form>
       <button class="btn btn-danger btn-lg btn-block" type="submit" name="button" form="delete-cohort">Delete</button>
+      <% if @cannot_delete == true %>
+        <p class = "incorrect-input">Cannot delete cohort as it is currently in use.</p>
+      <% end %>
     </div>
   </div>
