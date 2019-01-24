@@ -6,11 +6,6 @@ class App
     return PG.connect(dbname: "user_management", user: "postgres", password: "password")
   end
 
-  def self.not_logged_in
-    @not_logged_in = true
-    erb :"login/index.html"
-  end
-
   def self.get_info resource, column, id # e.g. cohort, cohort_name, cohort_id
     conn = self.open_connection
     sql = "SELECT #{column} FROM #{resource}_table WHERE #{resource}_id = #{id};"
