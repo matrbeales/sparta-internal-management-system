@@ -2,31 +2,48 @@ class UsersController < AppController
 
   # INDEX
   get "/" do
-    @users = User.all
-    erb :"users/index.html"
+    if session[:logged_in] == true
+      @users = User.all
+      erb :"users/index.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # NEW
   get "/new" do
-    # @user
-    @user = User.new
-    erb :"users/new.html"
+    if session[:logged_in] == true
+      @user = User.new
+      erb :"users/new.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # SHOW
   get "/:id" do
-    id = params[:id].to_i
-    @user = User.find id
-
-    erb :"users/show.html"
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      @user = User.find id
+      erb :"users/show.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # EDIT
   get "/:id/edit" do
-    id = params[:id].to_i
-    @user = User.find id
-    # @user
-    erb :"users/edit.html"
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      @user = User.find id
+      erb :"users/edit.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # CREATE

@@ -2,28 +2,48 @@ class RolesController < AppController
 
   # INDEX
   get "/" do
-    @roles = Role.all
-    erb :"roles/index.html"
+    if session[:logged_in] == true
+      @roles = Role.all
+      erb :"roles/index.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # NEW
-    get "/new" do
+  get "/new" do
+    if session[:logged_in] == true
       @role = Role.new
-    erb :"roles/new.html"
+      erb :"roles/new.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # SHOW
   get "/:id" do
-    id = params[:id].to_i
-    @role = Role.find id
-    erb :"roles/show.html"
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      @role = Role.find id
+      erb :"roles/show.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # EDIT
   get "/:id/edit" do
-    id = params[:id].to_i
-    @role = Role.find id
-    erb :"roles/edit.html"
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      @role = Role.find id
+      erb :"roles/edit.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # CREATE

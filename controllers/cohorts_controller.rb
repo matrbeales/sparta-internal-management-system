@@ -27,7 +27,6 @@ class CohortsController < AppController
     if session[:logged_in] == true
       id = params[:id].to_i
       @cohort = Cohort.find id
-
       erb :"cohorts/show.html"
     else
       @not_logged_in = true
