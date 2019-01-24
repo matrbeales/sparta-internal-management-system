@@ -1,31 +1,68 @@
 
+<div class="container">
 
-<h1>
-  <%= "#{@user.first_name} #{@user.last_name}"%>
-</h1>
+  <div class="row justify-content-center">
+    <div class="col-6 text-center border border-dark rounded">
+      <h1><%= "#{@user.first_name} #{@user.last_name}"%></h1>
+    </div>
+  </div><br>
 
-<h2>
-  Email: <%= @user.email%>
-</h2>
+  <div class="row justify-content-center">
+    <div class="col-3">
+      <h4>Email:</h4>
+    </div>
+    <div class="col-3">
+        <%= @user.email%>
+    </div>
+  </div>
 
-<h2>
-  Password: <%= @user.password%>
-</h2>
+  <div class="row justify-content-center">
+    <div class="col-3">
+    <h4>Password:</h4>
+    </div>
+    <div class="col-3">
+      <%= @user.password%>
+    </div>
+  </div>
 
-<h2>
-  Cohort: <%= App.get_info "cohort", "cohort_name", @user.cohort_id%>
-</h2>
+  <div class="row justify-content-center">
+    <div class="col-3">
+      <h4>Cohort:</h4>
+    </div>
+    <div class="col-3">
+      <%= App.get_info "cohort", "cohort_name", @user.cohort_id%>
+    </div>
+  </div>
 
-<h2>
-  Specialisation: <%= App.get_info "specialisation", "specialisation_name", (App.get_info "cohort", "specialisation_id", @user.cohort_id) %>
-</h2>
+  <div class="row justify-content-center">
+    <div class="col-3">
+      <h4>Specialisation:</h4>
+    </div>
+    <div class="col-3">
+      <%= App.get_info "specialisation", "specialisation_name", (App.get_info "cohort", "specialisation_id", @user.cohort_id) %>
+    </div>
+  </div>
 
-<h2>
-  Role: <%= App.get_info "role", "role_name", @user.role_id%>
-</h2>
-<button type="button" name="button"><a href="<%= @user.user_id %>/edit">Edit User</a></button>
+  <div class="row justify-content-center">
+      <div class="col-3">
+        <h4>Role:</h4>
+      </div>
+      <div class="col-3">
+        <%= App.get_info "role", "role_name", @user.role_id%>
+      </div>
+  </div><br>
 
-<form class="" action="/users/<%= @user.user_id %>" method="POST">
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" name="" value="Delete User">
-</form>
+  <div class="row justify-content-center">
+    <div class="col-3">
+      <button class="btn btn-secondary btn-lg btn-block" type="button" onclick="window.location.href = '<%= @user.user_id %>/edit';" name="button">Edit User</button>
+    </div>
+    <div class="col-3">
+      <form class="d-none" id="delete-button" action="/users/<%= @user.user_id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" name="" value="Delete User">
+      </form>
+      <button class="btn btn-danger btn-lg btn-block" type="submit" name="button" form="delete-button" >Delete</button>
+    </div>
+  </div>
+
+</div>
