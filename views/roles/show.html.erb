@@ -6,6 +6,7 @@
     </div>
   </div>
 
+<<<<<<< HEAD
   <br>
 
   <div class="row justify-content-center">
@@ -29,5 +30,20 @@
       <% end %>
 
     </div>
+=======
+<div class="row justify-content-center">
+  <div class="col-3">
+      <button class="btn btn-secondary btn-lg btn-block" type="button" onclick="window.location.href = '<%= @role.role_id %>/edit';" name="button">Edit</button>
+</div>
+<div class="col-3">
+  <form class="d-none" id="delete-role" action="/roles/<%= @role.role_id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" name="" value="Delete Role">
+  </form>
+  <button class="btn btn-danger btn-lg btn-block" type="submit" name="button" form="delete-role">Delete</button>
+  <% if @cannot_delete == true %>
+    <p class = "incorrect-input">Cannot delete role as it is currently in use.</p>
+  <% end %>
+>>>>>>> dev
   </div>
 </div>

@@ -3,9 +3,7 @@
 
     <form id="cohort-form" action="/cohorts/<%= @cohort.cohort_id%>" method="POST">
         <div class="form-group row">
-          <label  class="col-5 col-form-label">Cohort Name</label>
-
-          <!-- This will get the Cohort Name from the models and allow you to inject data via manual input -->
+          <label class="col-5 col-form-label">Cohort Name</label>
           <div class="col-7">
             <input class="form-control" type="text" name="cohort_name" placeholder="Enter cohort" value="<%= @cohort.cohort_name %>">
           </div>
