@@ -4,9 +4,9 @@
     <form id="specialisation-form" action="/specialisations/<%= @specialisation.specialisation_id%>" method="POST">
 
       <div class="form-group row">
-        <label for="input-fn" class="col-3 col-form-label">Specialisation Name</label>
+        <label for="input-ln" class="col-3 col-form-label">Specialisation Name</label>
           <div class="col-9">
-        <input id="input-fn" type="text" name="specialisation_name" placeholder="Please enter the specialisation name" value="<%= @specialisation.specialisation_name %>">
+        <input id="input-ln" type="text" name="specialisation_name" placeholder="Please enter the specialisation name" value="<%= @specialisation.specialisation_name %>">
       </div>
     </div>
 
@@ -16,7 +16,7 @@
       <% end %>
 
       <div class="form-group row">
-        <button class="btn btn-secondary btn-lg btn-block" type="submit" value="Save Specialisation">
+        <button class="btn btn-secondary btn-lg btn-block" type="submit" name="button" form="specialisation-form">Save</button>
       </div>
     </form>
   </div>
