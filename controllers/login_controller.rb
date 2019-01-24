@@ -3,8 +3,8 @@ class LoginController < AppController
   # INDEX
   get "/" do
     erb :"login/index.html"
-
   end
+
 
   # CREATE
   post "/" do
@@ -12,13 +12,19 @@ class LoginController < AppController
     password = params[:password]
 
     if (Login.password_match? email, password) == true
-      @correct_password = true
-      erb :"login/index.html"
+      session[:logged_in] = true
+      redirect "/users"
     else
-      @correct_password = false
+      @correct_login = false
       erb :"login/index.html"
     end
 
+  end
+
+  # DESTROY
+  delete "/" do
+    session[:logged_in] = false
+    redirect "/"
   end
 
 end

@@ -2,28 +2,48 @@ class SpecialisationsController < AppController
 
   # INDEX
   get "/" do
-    @specialisations = Specialisation.all
-    erb :"specialisations/index.html"
+    if session[:logged_in] == true
+      @specialisations = Specialisation.all
+      erb :"specialisations/index.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # NEW
   get "/new" do
-    @specialisation = Specialisation.new
-    erb :"specialisations/new.html"
+    if session[:logged_in] == true
+      @specialisation = Specialisation.new
+      erb :"specialisations/new.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # SHOW
   get "/:id" do
-    id = params[:id].to_i
-    @specialisation = Specialisation.find id
-    erb :"specialisations/show.html"
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      @specialisation = Specialisation.find id
+      erb :"specialisations/show.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # EDIT
   get "/:id/edit" do
-    id = params[:id].to_i
-    @specialisation = Specialisation.find id
-    erb :"specialisations/edit.html"
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      @specialisation = Specialisation.find id
+      erb :"specialisations/edit.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # CREATE
