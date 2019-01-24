@@ -1,56 +1,78 @@
-<form action="/users/<%= @user.user_id%>" method="POST">
+<div class="container">
+  <div class="row justify-content-center">
 
-  <div class="">
-    <label>First Name</label>
-    <input type="text" name="first_name" placeholder="Please enter user's first name" value="<%= @user.first_name %>">
-  </div>
+    <form id="user-form" action="/users/<%= @user.user_id%>" method="POST">
 
-  <div class="">
-    <label>Last Name</label>
-    <input type="text" name="last_name" placeholder="Please enter user's last name"  value="<%= @user.last_name %>">
-  </div>
+      <div class="form-group row">
+        <label for="input-fn" class="col-3 col-form-label">First Name</label>
+        <div class="col-9">
+          <input id="input-fn" class="form-control" type="text" name="first_name" placeholder="Please enter user's first name" value="<%= @user.first_name %>">
+        </div>
+      </div>
 
-  <div class="">
-    <label>Email</label>
-    <input type="text" name="email" placeholder="Please enter user's email" value="<%= @user.email %>">
-  </div>
+      <div class="form-group row">
+        <label for="input-ln" class="col-3 col-form-label">Last Name</label>
+        <div class="col-9">
+          <input id="inpu-ln" class="form-control" type="text" name="last_name" placeholder="Please enter user's last name"  value="<%= @user.last_name %>">
+        </div>
+      </div>
 
-  <div class="">
-    <label>Password</label>
-    <input type="text" name="password" placeholder="Please enter user's password" value="<%= @user.password %>">
-  </div>
+      <div class="form-group row">
+        <label for="input-ln" class="col-3 col-form-label">Email</label>
+        <div class="col-9">
+          <input class="form-control" type="text" name="email" placeholder="Leonaidas@spartaglobal.com" value="<%= @user.email %>">
+          <small id="emailHelp" class="form-text text-muted">This must be your Sparta Global address.</small>
+        </div>
+      </div>
 
-  <div class="">
-    <label>Cohort</label>
-    <select name="cohort_id">
-      <% for i in 1..(App.get_last_id "cohort").to_i%>
-        <% cohort_name = App.get_info "cohort", "cohort_name", i%>
-        <% if cohort_name != nil %>
-          <option value=<%= i %> <%= @user.cohort_id == i ? "selected" : "" %> > <%= cohort_name %></option>
-        <% end %>
+      <div class="form-group row">
+        <label for="input-ln" class="col-3 col-form-label">Password</label>
+        <div class="col-9">
+          <input class="form-control" type="text" name="password" placeholder="Please enter user's password" value="<%= @user.password %>">
+          <small id="emailHelp" class="form-text text-muted">This must be 8 characters long and include 1 upper and 1 lower case letter.</small>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="input-ln" class="col-3 col-form-label">Cohort</label>
+        <div class="col-9">
+          <select name="cohort_id" class="custom-select">
+            <option selected>Please Select...</option>
+            <% for i in 1..(App.get_last_id "cohort").to_i%>
+              <% cohort_name = App.get_info "cohort", "cohort_name", i%>
+              <% if cohort_name != nil %>
+                <option value=<%= i %> <%= @user.cohort_id == i ? "selected" : "" %> > <%= cohort_name %></option>
+              <% end %>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="input-ln" class="col-3 col-form-label">Role</label>
+        <div class="col-9">
+          <select name="role_id" class="custom-select">
+            <option selected>Please Select...</option>
+            <% for i in 1..(App.get_last_id "role").to_i%>
+              <% role_name = App.get_info "role", "role_name", i%>
+              <% if role_name != nil %>
+                <option value=<%= i %> <%= @user.role_id == i ? "selected" : "" %> > <%= role_name %></option>
+              <% end %>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <!-- Changes verb to PUT instead of POST if user already exists -->
+      <% if @user.user_id != nil%>
+        <input type="hidden" name="_method" value="PUT">
       <% end %>
-    </select>
+
+      <div class="form-group row">
+        <button class="btn btn-secondary btn-lg btn-block" type="submit" name="button" form="user-form">Save User</button>
+      </div>
+      
+    </form>
+
   </div>
-
-  <div class="">
-    <label>Role</label>
-    <select name="role_id">
-      <% for i in 1..(App.get_last_id "role").to_i%>
-        <% role_name = App.get_info "role", "role_name", i%>
-        <% if role_name != nil %>
-          <option value=<%= i %> <%= @user.role_id == i ? "selected" : "" %> > <%= role_name %></option>
-        <% end %>
-      <% end %>
-    </select>
-  </div>
-
-  <!-- Changes verb to PUT instead of POST if user already exists -->
-  <% if @user.user_id != nil%>
-    <input type="hidden" name="_method" value="PUT">
-  <% end %>
-
-<div class="">
-  <input type="submit" value="Save User">
 </div>
-
-</form>
