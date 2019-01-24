@@ -95,25 +95,22 @@ class CohortsController < AppController
 
   # DESTROY
   delete "/:id" do
-<<<<<<< HEAD
     if session[:logged_in] == true
       id = params[:id].to_i
-      Cohort.destroy id
-      redirect "/cohorts"
+      if Cohort.can_destroy?(id) == true
+        Cohort.destroy id
+        redirect "/cohorts"
+      else
+        @cohort = Cohort.find id
+        @cannot_delete = true
+        erb :"cohorts/show.html"
+      end
+
     else
       @not_logged_in = true
       erb :"login/index.html"
-=======
-    id = params[:id].to_i
-    if Cohort.can_destroy?(id) == true
-      Cohort.destroy id
-      redirect "/cohorts"
-    else
-      @cohort = Cohort.find id
-      @cannot_delete = true
-      erb :"cohorts/show.html"
->>>>>>> dev
     end
+
   end
 
 

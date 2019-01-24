@@ -93,25 +93,22 @@ class RolesController < AppController
 
   # DESTROY
   delete "/:id" do
-<<<<<<< HEAD
     if session[:logged_in] == true
       id = params[:id].to_i
-      Role.destroy id
-      redirect "/roles"
+      if Role.can_destroy?(id) == true
+        Role.destroy id
+        redirect "/roles"
+      else
+        @role = Role.find id
+        @cannot_delete = true
+        erb :"roles/show.html"
+      end
+
     else
       @not_logged_in = true
       erb :"login/index.html"
-=======
-    id = params[:id].to_i
-    if Role.can_destroy?(id) == true
-      Role.destroy id
-      redirect "/roles"
-    else
-      @role = Role.find id
-      @cannot_delete = true
-      erb :"roles/show.html"
->>>>>>> dev
     end
+
   end
 
 

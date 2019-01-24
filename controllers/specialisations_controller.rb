@@ -93,25 +93,22 @@ class SpecialisationsController < AppController
 
   # DESTROY
   delete "/:id" do
-<<<<<<< HEAD
     if session[:logged_in] == true
       id = params[:id].to_i
-      Specialisation.destroy id
-      redirect "/specialisations"
+      if Specialisation.can_destroy?(id) == true
+        Specialisation.destroy id
+        redirect "/specialisations"
+      else
+        @specialisation = Specialisation.find id
+        @cannot_delete = true
+        erb :"specialisations/show.html"
+      end
+
     else
       @not_logged_in = true
       erb :"login/index.html"
-=======
-    id = params[:id].to_i
-    if Specialisation.can_destroy?(id) == true
-      Specialisation.destroy id
-      redirect "/specialisations"
-    else
-      @specialisation = Specialisation.find id
-      @cannot_delete = true
-      erb :"specialisations/show.html"
->>>>>>> dev
     end
+
   end
 
 end
