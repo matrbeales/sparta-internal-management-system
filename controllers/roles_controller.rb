@@ -111,5 +111,4 @@ class RolesController < AppController
 
   end
 
-
 end

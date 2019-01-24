@@ -119,5 +119,4 @@ class UsersController < AppController
     end
   end
 
-  
 end

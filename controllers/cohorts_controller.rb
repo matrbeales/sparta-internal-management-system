@@ -113,5 +113,4 @@ class CohortsController < AppController
 
   end
 
-
 end

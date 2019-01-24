@@ -1,4 +1,4 @@
-require "pg"
+# require "pg"
 
 class Cohort < App
   attr_accessor :cohort_id, :cohort_name, :specialisation_id

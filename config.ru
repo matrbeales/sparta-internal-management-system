@@ -1,4 +1,5 @@
-require 'jwt'
+require "pg"
+require "jwt"
 require "sinatra"
 require "sinatra/contrib"
 require "sinatra/reloader" if development?

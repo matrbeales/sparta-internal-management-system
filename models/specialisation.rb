@@ -1,4 +1,4 @@
-require "pg"
+# require "pg"
 
 class Specialisation < App
   attr_accessor :specialisation_id, :specialisation_name

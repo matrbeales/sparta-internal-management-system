@@ -1,4 +1,4 @@
-require "pg"
+# require "pg"
 
 class Role < App
   attr_accessor :role_id, :role_name
