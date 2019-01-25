@@ -2,7 +2,9 @@
 
 We were tasked with creating a Internal Management System using the 7 restful routes which we applied to our websites directory system.
 
-We need to be able to Create, Read, Update and Delete a User, their Role, Cohort and that Cohorts specialisation so we can eventually track and log when a User checks a laptop in or out.
+In this website application, after logging in, you can Create, Read, Update and Delete Users, their Roles, their Cohorts, and the Specialisation of each Cohort.
+
+You can also send a POST request to /api. If this request has correct email and password keys attached, it will return an authentication token.
 
 # How to use/run the Website Application Locally
 
