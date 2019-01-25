@@ -1,17 +1,23 @@
-<form action="/specialisations/<%= @specialisation.specialisation_id%>" method="POST">
+<div class="container">
+  <div class="row justify-content-center">
 
-  <div>
-    <label>Specialisation Name</label>
-    <input type="text" name="specialisation_name" placeholder="Please enter the specialisation name" value="<%= @specialisation.specialisation_name %>">
+    <form id="specialisation-form" action="/specialisations/<%= @specialisation.specialisation_id%>" method="POST">
+
+      <div class="form-group row">
+        <label for="input-fn" class="col-4 col-form-label">Specialisation</label>
+          <div class="col-8">
+            <input class="form-control" id="input-fn" type="text" name="specialisation_name" placeholder="Enter the specialisation" value="<%= @specialisation.specialisation_name %>">
+          </div>
+      </div>
+
+      <!-- Changes verb to PUT instead of POST if specialisation already exists -->
+      <% if @specialisation.specialisation_id != nil%>
+        <input type="hidden" name="_method" value="PUT">
+      <% end %>
+
+      <div class="form-group row">
+        <button class="btn btn-secondary btn-lg btn-block" type="submit" name="button" form="specialisation-form">Save</button>
+      </div>
+    </form>
   </div>
-
-  <!-- Changes verb to PUT instead of POST if specialisation already exists -->
-  <% if @specialisation.specialisation_id != nil%>
-    <input type="hidden" name="_method" value="PUT">
-  <% end %>
-
-  <div>
-    <input type="submit" value="Save Specialisation">
-  </div>
-
-</form>
+</div>

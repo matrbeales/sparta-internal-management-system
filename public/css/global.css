@@ -33,4 +33,4 @@
     box-shadow:0 1px 0 #cfcfcf;
 }
 
-.loginsubmit input[type="text"] { -webkit-text-security: circle;}
+#loginsubmit input[type="text"] { -webkit-text-security: circle ;}
