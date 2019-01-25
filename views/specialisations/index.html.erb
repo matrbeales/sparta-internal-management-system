@@ -6,6 +6,8 @@
       <th>Specialisation Name</th>
     </tr>
   </thead>
+
+  <!-- Displays all cohorts -->
   <tbody>
     <% @specialisations.each do |specialisation|%>
       <tr>
@@ -14,4 +16,5 @@
     <% end %>
   </tbody>
 </table>
-<button class="btn btn-success btn-lg btn-block" type="button" onclick="window.location.href = 'users/new';" name="button">Add New</button>
+
+<button class="btn btn-success btn-lg btn-block" type="button" onclick="window.location.href = 'specialisations/new';" name="button">Add New</button>

@@ -6,6 +6,8 @@
       <th>Role Name</th>
     </tr>
   </thead>
+
+  <!-- Displays all roles -->
   <tbody>
     <% @roles.each do |role|%>
       <tr>
@@ -14,4 +16,5 @@
     <% end %>
   </tbody>
 </table>
-<button class="btn btn-success btn-lg btn-block" type="button" onclick="window.location.href = 'users/new';" name="button">Add New</button>
+
+<button class="btn btn-success btn-lg btn-block" type="button" onclick="window.location.href = 'roles/new';" name="button">Add New</button>

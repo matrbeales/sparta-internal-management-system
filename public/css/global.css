@@ -1,7 +1,3 @@
-/* .navbar-custom {
-  background-color: black;
-} */
-
 .sparta-logo {
   background-image: url(https://media.licdn.com/dms/image/C560BAQHGBikARgsz5A/company-logo_200_200/0?e=2159024400&v=beta&t=ooHEmQP3Cswkus82FU4hMSwZJU-1z1nD-J2j4lMe5zI);
   background-size: cover;
@@ -11,7 +7,6 @@
   width: 35px;
   height: 35px;
   margin-right: 5px;
-
   border-radius: 2px;
 }
 
@@ -19,24 +14,23 @@
   margin-top: 5%;
 }
 
-.test {
-  background-color: purple;
-
 .incorrect-input {
   color: red;
 }
 
-.col-3 {
-  text-align: center;
-  margin-left: 300px;
-  font-weight: bold;
+.loginsubmit {
+  margin-top: 6px;
+}
+.form-login {
+    background-color: #EDEDED;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 5px;
+    box-shadow:0 1px 0 #cfcfcf;
 }
 
-h1 {
-  text-align: center;
-
-}
-
-.container {
-  text-align: center;
-}
+#loginsubmit input[type="text"] { -webkit-text-security: circle ;}

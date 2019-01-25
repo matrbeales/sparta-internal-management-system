@@ -1,8 +1,33 @@
-<h1><%= @specialisation.specialisation_name %></h1>
+<div class="container">
 
-<button type="button" name="button"><a href="<%= @specialisation.specialisation_id %>/edit">Edit Specialisation</a></button>
+  <div class="row justify-content-center">
+    <div class="col-6 text-center border border-dark rounded">
+      <h1><%= @specialisation.specialisation_name %></h1>
+    </div>
+  </div>
 
-<form class="" action="/specialisations/<%= @specialisation.specialisation_id %>" method="POST">
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" name="" value="Delete Specialisation">
-</form>
+  <br>
+
+  <div class="row justify-content-center">
+    <div class="col-3">
+      <button class="btn btn-secondary btn-lg btn-block" type="button" onclick="window.location.href = '<%= @specialisation.specialisation_id %>/edit';" name="button">Edit</button>
+    </div>
+
+    <div class="col-3">
+      <!-- Delete action -->
+      <form class="d-none" id="delete-spec" action="/specialisations/<%= @specialisation.specialisation_id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" name="" value="Delete Specialisation">
+      </form>
+
+      <!-- Button that performs delete action -->
+      <button class="btn btn-danger btn-lg btn-block" type="submit" name="button" form="delete-spec" >Delete</button>
+
+      <!-- Displays error message if can't delete -->
+      <% if @cannot_delete == true %>
+        <p class = "incorrect-input">Cannot delete specialisation as it is currently in use.</p>
+      <% end %>
+
+    </div>
+  </div>
+</div>

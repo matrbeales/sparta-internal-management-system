@@ -1,17 +1,23 @@
-<form action="/roles/<%= @role.role_id%>" method="POST">
+<div class="container">
+  <div class="row justify-content-center">
 
-  <div class="">
-    <label>Role</label>
-    <input type="text" name="role_name" placeholder="Please enter new role" value="<%= @role.role_name %>">
+    <form id="role-form" action="/roles/<%= @role.role_id%>" method="POST">
+      <div class="form-group row">
+        <label class="col-3 col-form-label">Role</label>
+        <div class="col-9">
+          <input class="form-control" type="text" name="role_name" placeholder="Please enter new role" value="<%= @role.role_name %>">
+        </div>
+      </div>
+
+      <!-- Changes verb to PUT instead of POST if role already exists -->
+      <% if @role.role_id != nil%>
+        <input type="hidden" name="_method" value="PUT">
+      <% end %>
+
+      <div class="form-group row">
+        <button class="btn btn-secondary btn-lg btn-block" type="submit" name="button" form="role-form">Save role</button>
+      </div>
+
+    </form>
   </div>
-
-  <div class="">
-    <input type="submit" value="Save Role">
-  </div>
-
-  <!-- Changes verb to PUT instead of POST if role already exists -->
-  <% if @role.role_id != nil%>
-    <input type="hidden" name="_method" value="PUT">
-  <% end %>
-
-</form>
+</div>

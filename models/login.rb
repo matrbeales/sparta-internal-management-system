@@ -1,7 +1,6 @@
-require "pg"
-
 class Login < App
 
+  # Checks if email & password match an entry in the database.
   def self.password_match? email, password
     conn = self.open_connection
     sql = "SELECT user_id FROM user_table WHERE email = '#{email}';"

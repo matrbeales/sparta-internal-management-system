@@ -2,87 +2,137 @@ class UsersController < AppController
 
   # INDEX
   get "/" do
-    @users = User.all
-    erb :"users/index.html"
+    if session[:logged_in] == true
+      @users = User.all
+      erb :"users/index.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # NEW
   get "/new" do
-    # @user
-    @user = User.new
-    erb :"users/new.html"
+    if session[:logged_in] == true
+      @user = User.new
+      erb :"users/new.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # SHOW
   get "/:id" do
-    id = params[:id].to_i
-    @user = User.find id
-
-    erb :"users/show.html"
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      @user = User.find id
+      erb :"users/show.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # EDIT
   get "/:id/edit" do
-    id = params[:id].to_i
-    @user = User.find id
-    # @user
-    erb :"users/edit.html"
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      @user = User.find id
+      erb :"users/edit.html"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
 
   # CREATE
   post "/" do
-    one = params[:email]
-    two = one.strip
-    three = two.end_with?("@spartaglobal.com")
+    if session[:logged_in] == true
+      one = params[:email]
+      two = one.strip
+      three = two.end_with?("@spartaglobal.com")
 
-    if App.correct_form_entry?(params[:first_name], params[:last_name]) == true && params[:email].strip.downcase.end_with?("@spartaglobal.com") && App.correct_password?(params[:password]) == true
-      user = User.new
-      user.first_name = params[:first_name].strip
-      user.last_name = params[:last_name].strip
-      user.email = params[:email].strip.downcase
-      user.password = params[:password].strip
-      user.cohort_id = params[:cohort_id]
-      user.role_id = params[:role_id]
+      if App.correct_form_entry?(params[:first_name], params[:last_name]) == true && params[:email].strip.downcase.end_with?("@spartaglobal.com") && App.correct_password?(params[:password]) == true
+        user = User.new
+        user.first_name = params[:first_name].strip
+        user.last_name = params[:last_name].strip
+        user.email = params[:email].strip.downcase
+        user.password = params[:password].strip
+        user.cohort_id = params[:cohort_id]
+        user.role_id = params[:role_id]
+        unique_count = user.unique_count_new "user_table", "email", user.email
 
-      user.save
-      redirect "/users"
+        if unique_count == 0
+          user.save
+          redirect "/users"
+        else
+          @not_unique = true
+          @user = User.new
+          erb :"users/new.html"
+        end
+
+      else
+        @redirect = true
+        @user = User.new
+        erb :"users/new.html"
+      end
+
     else
-      @redirect = true
-      @user = User.new
-      erb :"users/new.html"
+      @not_logged_in = true
+      erb :"login/index.html"
     end
 
   end
 
   # UPDATE
   put "/:id" do
-    id = params[:id].to_i
+    if session[:logged_in] == true
+      id = params[:id].to_i
 
-    if App.correct_form_entry?(params[:first_name], params[:last_name]) == true && params[:email].strip.downcase.end_with?("@spartaglobal.com") && App.correct_password?(params[:password]) == true
-      user = User.find id
+      if App.correct_form_entry?(params[:first_name], params[:last_name]) == true && params[:email].strip.downcase.end_with?("@spartaglobal.com") && App.correct_password?(params[:password]) == true
+        user = User.find id
 
-      user.first_name = params[:first_name].strip
-      user.last_name = params[:last_name].strip
-      user.email = params[:email].strip.downcase
-      user.password = params[:password].strip
-      user.cohort_id = params[:cohort_id]
-      user.role_id = params[:role_id]
+        user.first_name = params[:first_name].strip
+        user.last_name = params[:last_name].strip
+        user.email = params[:email].strip.downcase
+        user.password = params[:password].strip
+        user.cohort_id = params[:cohort_id]
+        user.role_id = params[:role_id]
+        unique_count = user.unique_count_edit "user_table", "email", user.email, "user_id", user.user_id
 
+        if unique_count == 0
+          user.save
+          redirect "/users/#{id}"
+        else
+          @not_unique = true
+          @user = User.find id
+          erb :"users/edit.html"
+        end
 
-      user.save
-      redirect "/users/#{id}"
+      else
+        @redirect = true
+        @user = User.find id
+        erb :"users/edit.html"
+      end
+
     else
-      @redirect = true
-      @user = User.find id
-      erb :"users/edit.html"
+      @not_logged_in = true
+      erb :"login/index.html"
     end
 
   end
 
   # DESTROY
   delete "/:id" do
-    id = params[:id].to_i
-    User.destroy id
-    redirect "/users"
+    if session[:logged_in] == true
+      id = params[:id].to_i
+      User.destroy id
+      redirect "/users"
+    else
+      @not_logged_in = true
+      erb :"login/index.html"
+    end
   end
+
 end
