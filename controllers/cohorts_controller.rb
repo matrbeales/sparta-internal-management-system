@@ -55,8 +55,17 @@ class CohortsController < AppController
         cohort.cohort_id = params[:cohort_id]
         cohort.cohort_name = params[:cohort_name].strip
         cohort.specialisation_id = params[:specialisation_id]
-        cohort.save
-        redirect "/cohorts"
+        unique_count = cohort.unique_count_new "cohort_table", "cohort_name", cohort.cohort_name
+
+        if unique_count == 0
+          cohort.save
+          redirect "/cohorts"
+        else
+          @not_unique = true
+          @cohort = Cohort.new
+          erb :"cohorts/new.html"
+        end
+
       else
         @redirect = true
         @cohort = Cohort.new
@@ -78,8 +87,17 @@ class CohortsController < AppController
         cohort = Cohort.find id
         cohort.cohort_name = params[:cohort_name].strip
         cohort.specialisation_id = params[:specialisation_id]
-        cohort.save
-        redirect "/cohorts/#{id}"
+        unique_count = cohort.unique_count_edit "cohort_table", "cohort_name", cohort.cohort_name, "cohort_id", cohort.cohort_id
+
+        if unique_count == 0
+          cohort.save
+          redirect "/cohorts/#{id}"
+        else
+          @not_unique = true
+          @cohort = Cohort.find id
+          erb :"cohorts/edit.html"
+        end
+
       else
         @redirect = true
         @cohort = Cohort.find id

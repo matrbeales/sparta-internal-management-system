@@ -7,6 +7,15 @@ We need to be able to Create, Read, Update and Delete a User, their Role, Cohort
 # How to use/run the Website Application Locally
 
 1. Clone the repository to your local
-2. Manually create the database called user_management then run the seed file
+2. Manually create the database called user_management then run the seed file:
+
+```
+  psql -U postgres
+  CREATE DATABASE user_management
+  \q
+  psql -U postgres -d user_management -f seed.sql
+```
+
+
 3. Run the 'bundle' command to automatically install all the gems/dependencies
 4. Run the 'rackup' command on Git bash to run the server
