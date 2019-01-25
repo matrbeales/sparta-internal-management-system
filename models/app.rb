@@ -56,6 +56,7 @@ class App
   end
 
   # Counts the number of entries in <table> where <column> = <equivilent>
+  def unique_count_new table, column, equivilent
     conn = App.open_connection
     sql = "SELECT COUNT(*) FROM #{table} WHERE #{column} = '#{equivilent}';"
     count = conn.exec(sql).first["count"].to_i

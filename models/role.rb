@@ -31,26 +31,6 @@ class Role < App
     return role
   end
 
-  # def unique_count_new
-  #   conn = App.open_connection
-  #   sql = "SELECT COUNT(*) FROM role_table WHERE role_name = '#{self.role_name}';"
-  #   count = conn.exec(sql).first["count"].to_i
-  #   conn.close
-  #
-  #   return count
-  # end
-
-  # def unique_count_edit
-  #   conn = App.open_connection
-  #   sql = "SELECT COUNT(*) FROM role_table WHERE role_name = '#{self.role_name}' AND NOT role_id = #{self.role_id};"
-  #   count = conn.exec(sql).first["count"].to_i
-  #   conn.close
-  #
-  #   return count
-  # end
-
-
-
   def save
     conn = App.open_connection
 
