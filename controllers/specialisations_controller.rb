@@ -53,8 +53,17 @@ class SpecialisationsController < AppController
         specialisation = Specialisation.new
         specialisation.specialisation_id = params[:specialisation_id]
         specialisation.specialisation_name = params[:specialisation_name].strip
-        specialisation.save
-        redirect "/specialisations"
+        unique_count = specialisation.unique_count_new "specialisation_table", "specialisation_name", specialisation.specialisation_name
+
+        if unique_count == 0
+          specialisation.save
+          redirect "/specialisations"
+        else
+          @not_unique = true
+          @specialisation = Specialisation.new
+          erb :"specialisations/new.html"
+        end
+
       else
         @redirect = true
         @specialisation = Specialisation.new
@@ -76,8 +85,17 @@ class SpecialisationsController < AppController
       if App.correct_form_entry?(params[:specialisation_name]) == true
         specialisation = Specialisation.find id
         specialisation.specialisation_name = params[:specialisation_name].strip
-        specialisation.save
-        redirect "/specialisations/#{id}"
+        unique_count = specialisation.unique_count_edit "specialisation_table", "specialisation_name", specialisation.specialisation_name, "specialisation_id", specialisation.specialisation_id
+
+        if unique_count == 0
+          specialisation.save
+          redirect "/specialisations/#{id}"
+        else
+          @not_unique = true
+          @specialisation = Specialisation.find id
+          erb :"specialisations/edit.html"
+        end
+
       else
         @redirect = true
         @specialisation = Specialisation.find id

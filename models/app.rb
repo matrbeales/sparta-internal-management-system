@@ -55,5 +55,25 @@ class App
     end
   end
 
+  # Counts the number of entries in <table> where <column> = <equivilent>
+  def unique_count_new table, column, equivilent
+    conn = App.open_connection
+    sql = "SELECT COUNT(*) FROM #{table} WHERE #{column} = '#{equivilent}';"
+    count = conn.exec(sql).first["count"].to_i
+    conn.close
+
+    return count
+  end
+
+  # Counts the number of entries in <table> where <column1> = <equivilent>, and <column2> != <not_equivilent>
+  def unique_count_edit table, column1, equivilent, column2, not_equivilent
+    conn = App.open_connection
+    sql = "SELECT COUNT(*) FROM #{table} WHERE #{column1} = '#{equivilent}' AND NOT #{column2} = #{not_equivilent};"
+    count = conn.exec(sql).first["count"].to_i
+    conn.close
+
+    return count
+  end
+
 
 end

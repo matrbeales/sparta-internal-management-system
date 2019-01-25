@@ -53,8 +53,17 @@ class RolesController < AppController
         role = Role.new
         role.role_id = params[:role_id]
         role.role_name = params[:role_name].strip
-        role.save
-        redirect "/roles"
+        unique_count = role.unique_count_new "role_table", "role_name", role.role_name
+
+        if unique_count == 0
+          role.save
+          redirect "/roles"
+        else
+          @not_unique = true
+          @role = Role.new
+          erb :"roles/new.html"
+        end
+
       else
         @redirect = true
         @role = Role.new
@@ -76,8 +85,17 @@ class RolesController < AppController
       if App.correct_form_entry?(params[:role_name]) == true
         role = Role.find id
         role.role_name = params[:role_name].strip
-        role.save
-        redirect "/roles/#{id}"
+        unique_count = role.unique_count_edit "role_table", "role_name", role.role_name, "role_id", role.role_id
+
+        if unique_count == 0
+          role.save
+          redirect "/roles/#{id}"
+        else
+          @not_unique = true
+          @role = Role.find id
+          erb :"roles/edit.html"
+        end
+
       else
         @redirect = true
         @role = Role.find id

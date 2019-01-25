@@ -1,7 +1,11 @@
 <h1 class="text-center">Edit This User</h1><br>
 
 <% if @redirect == true %>
-  <p class="incorrect-input">All fields must be filled. Password must be at least 8 characters long, and include at least 1 uppercase letter, 1 lowercase letter, and 1 number. Must be a @spartglobal.com email address.</p>
+  <p class="incorrect-input text-center">All fields must be filled. Password must be at least 8 characters long, and include at least 1 uppercase letter, 1 lowercase letter, and 1 number. Must be a @spartglobal.com email address.</p>
+<% end %>
+
+<% if @not_unique == true %>
+  <p class="incorrect-input text-center">This email already has an associated account</p>
 <% end %>
 
 <%= erb :"users/form", :layout => false %>

@@ -34,6 +34,7 @@ class Role < App
   def save
     conn = App.open_connection
 
+
     if !self.role_id
       sql = "INSERT INTO role_table (role_name) VALUES('#{self.role_name}');"
     else
