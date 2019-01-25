@@ -61,9 +61,17 @@ class UsersController < AppController
         user.password = params[:password].strip
         user.cohort_id = params[:cohort_id]
         user.role_id = params[:role_id]
+        unique_count = user.unique_count_new "user_table", "email", user.email
 
-        user.save
-        redirect "/users"
+        if unique_count == 0
+          user.save
+          redirect "/users"
+        else
+          @not_unique = true
+          @user = User.new
+          erb :"users/new.html"
+        end
+
       else
         @redirect = true
         @user = User.new
@@ -91,9 +99,17 @@ class UsersController < AppController
         user.password = params[:password].strip
         user.cohort_id = params[:cohort_id]
         user.role_id = params[:role_id]
+        unique_count = user.unique_count_edit "user_table", "email", user.email, "user_id", user.user_id
 
-        user.save
-        redirect "/users/#{id}"
+        if unique_count == 0
+          user.save
+          redirect "/users/#{id}"
+        else
+          @not_unique = true
+          @user = User.find id
+          erb :"users/edit.html"
+        end
+
       else
         @redirect = true
         @user = User.find id
