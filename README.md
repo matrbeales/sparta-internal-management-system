@@ -11,8 +11,17 @@ We need to be able to Create, Read, Update and Delete a User, their Role, Cohort
 
 ```
   psql -U postgres
+```
+
+```
   CREATE DATABASE user_management
+```
+
+```
   \q
+```
+
+```
   psql -U postgres -d user_management -f seed.sql
 ```
 
